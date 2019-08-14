@@ -58,18 +58,31 @@ class CoraFramework {
 	public $url;
 
 	/**
+	 * Current instance configuration.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var string
+	 */
+	public $config;
+
+	/**
 	 * Primary class constructor.
 	 *
 	 * @since 1.0.0
 	 */
-	public function __construct() {
+	public function __construct( $config ) {
 
 		# Define paths
         $this->dir = dirname( __FILE__ ) . "/";
-		$this->url = $this->get_url();
-
-        var_dump($this->url);
-
+		$this->url = $this->dir_url();
+		
+		# Configuration
+		$this->config = $config;
+		
+		# Add admin page
+		add_action('admin_menu', array( $this  , "add_admin_page"), 100 );
+		
 	}
 
 	/**
@@ -77,7 +90,7 @@ class CoraFramework {
 	 *
 	 * @since 1.0.0
 	 */
-    public function get_url() {
+    public function dir_url() {
 
 		$url = str_replace( "\\", "/", str_replace( str_replace( "/", "\\", WP_CONTENT_DIR ), "", __DIR__ ) );
 		$url .= '/';
@@ -89,4 +102,39 @@ class CoraFramework {
 		
 	}
 
+	/**
+	 * Add admin page.
+	 *
+	 * @since 1.0.0
+	 */
+    public function add_admin_page() {
+
+		$defaultArgs = array(
+			'page_title' => 'example',
+			'menu_title' => 'example',
+			'capability' => 'manage_options',
+			'menu_icon' => '',
+			'menu_position' => 99
+		);
+
+		$args = wp_parse_args($this->config, $defaultArgs);
+
+        add_menu_page( 
+			$args['page_title'],
+			$args['menu_title'],
+			$args['capability'],
+			$args['id'],
+			function () {
+				include 'view.html';
+			},
+			$args['menu_icon'],
+			$args['menu_position']
+		);
+		
+	}
+
 }
+
+// Testing Page
+$exampleConfig = include 'example.config.php';
+$exampleSettings = 	new CoraFramework( $exampleConfig );
