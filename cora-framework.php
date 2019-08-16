@@ -16,6 +16,11 @@
 if ( ! defined( 'WPINC' ) )  die;
 
 
+# Require vendors
+require "vendor/scssphp/scss.inc.php";
+
+# Use Vendors
+use ScssPhp\ScssPhp\Compiler as SCSSCompiler;
 
 
 
@@ -83,6 +88,9 @@ class CoraFramework {
 		# Add admin page
 		add_action('admin_menu', array( $this  , "add_admin_page"), 100 );
 		
+		# Compile SCSS
+		add_action('admin_head', array( $this  , "style") );
+
 	}
 
 	/**
@@ -131,6 +139,21 @@ class CoraFramework {
 			$args['menu_position']
 		);
 		
+	}
+
+	/**
+	 * Compile SCSS.
+	 *
+	 * @since 1.0.0
+	 */
+    public function style() {
+
+		$compiler = new SCSSCompiler();
+		$file = file_get_contents($this->dir . "assets/scss/style.scss");
+		$css = $compiler->compile($file);	  
+		
+		echo "<style>$css</style>";
+	
 	}
 
 }
