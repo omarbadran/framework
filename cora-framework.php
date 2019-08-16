@@ -9,7 +9,7 @@
  * Version:           1.0.0
  * Author:            Cora
  * Author URI:        http://coradashboard.com/
- */
+*/
 
 
 # If this file is called directly, abort.
@@ -90,6 +90,9 @@ class CoraFramework {
 		
 		# Compile SCSS
 		add_action('admin_head', array( $this  , "style") );
+		
+		# Enqueue scripts
+		add_action('admin_enqueue_scripts', array( $this  , "scripts") );
 
 	}
 
@@ -100,8 +103,8 @@ class CoraFramework {
 	 */
     public function dir_url() {
 
-		$url = str_replace( "\\", "/", str_replace( str_replace( "/", "\\", WP_CONTENT_DIR ), "", __DIR__ ) );
-		$url .= '/';
+		$url = str_replace( "\\", "/", str_replace( str_replace( "/", "\\", WP_CONTENT_DIR ), "", __DIR__ ) )  . '/';
+
 		if ( $url ){
 			return content_url( $url );
 		}
@@ -125,16 +128,14 @@ class CoraFramework {
 			'menu_position' => 99
 		);
 
-		$args = wp_parse_args($this->config, $defaultArgs);
+		$args = wp_parse_args( $this->config, $defaultArgs );
 
         add_menu_page( 
 			$args['page_title'],
 			$args['menu_title'],
 			$args['capability'],
 			$args['id'],
-			function () {
-				include 'view.html';
-			},
+			function () { include( 'view.html' ); },
 			$args['menu_icon'],
 			$args['menu_position']
 		);
@@ -149,11 +150,25 @@ class CoraFramework {
     public function style() {
 
 		$compiler = new SCSSCompiler();
-		$file = file_get_contents($this->dir . "assets/scss/style.scss");
-		$css = $compiler->compile($file);	  
+		$file = file_get_contents( $this->dir . "assets/scss/style.scss" );
+		$css = $compiler->compile( $file );	  
 		
 		echo "<style>$css</style>";
 	
+	}
+
+	/**
+	 * Enqueue scripts.
+	 *
+	 * @since 1.0.0
+	 */
+    public function scripts() {
+
+		# Vue
+		wp_enqueue_script( 'vue', $this->url."/assets/vendor/vue/vue.js" );
+
+		# App
+		wp_enqueue_script( 'cora-framework', $this->url."/assets/js/app.js", array('vue'), $this->version, true );
 	}
 
 }
