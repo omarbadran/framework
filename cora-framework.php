@@ -51,7 +51,7 @@ class CoraFramework {
 	 *
 	 * @var string
 	 */
-	public $dir;
+	private $dir;
 
 	/**
 	 * Plugin directory url.
@@ -60,16 +60,43 @@ class CoraFramework {
 	 *
 	 * @var string
 	 */
-	public $url;
+	private $url;
 
 	/**
 	 * Current instance configuration.
 	 *
 	 * @since 1.0.0
 	 *
+	 * @var array
+	 */
+	private $config;
+	
+	/**
+	 * Registered Sections.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var array
+	 */
+	private $sections = array();
+
+	/**
+	 * Registered fields.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var array
+	 */
+	private $fields = array();
+	
+	/**
+	 * Fields values.
+	 *
+	 * @since 1.0.0
+	 *
 	 * @var string
 	 */
-	public $config;
+	private $values = array();
 
 	/**
 	 * Primary class constructor.
@@ -170,9 +197,42 @@ class CoraFramework {
 		# App
 		wp_enqueue_script( 'cora-framework', $this->url."/assets/js/app.js", array('vue'), $this->version, true );
 	}
+	
+	/**
+	 * API
+	 * 
+	 * Add section.
+	 *
+	 * @since 1.0.0
+	 */
+    public function add_section($section) {
+		
+		$this->sections[] = $section;
 
-}
+	}
 
-// Testing Page
-$exampleConfig = include 'example.config.php';
-$exampleSettings = 	new CoraFramework( $exampleConfig );
+	/**
+	 * API
+	 * 
+	 * Add field.
+	 *
+	 * @since 1.0.0
+	 */
+    public function add_field($field) {
+		
+		$this->fields[] = $field;
+
+		if( isset( $field['default'] ) ) {
+
+			$this->values[$field['section']][$field['id']] = $field['default'];
+
+		}
+
+	}
+
+} # Class end
+
+
+
+// Sample instance
+require_once 'sample.php';
