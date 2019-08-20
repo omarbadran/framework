@@ -123,13 +123,16 @@ class CoraFramework {
 		$this->config = $config;
 		
 		# Add admin page
-		add_action( 'admin_menu', array( $this  , "add_admin_page"), 100 );
+		add_action( 'admin_menu', array( $this  , "add_admin_page" ), 100 );
 		
 		# Compile SCSS
-		add_action( 'admin_head', array( $this  , "style") );
+		add_action( 'admin_head', array( $this  , "style" ) );
 		
 		# Enqueue scripts
-		add_action( 'admin_enqueue_scripts', array( $this  , "scripts") );
+		add_action( 'admin_enqueue_scripts', array( $this  , "scripts" ) );
+
+		# Localize data to be handeld by vue
+		add_action( 'admin_enqueue_scripts', array( $this  , "app_data") );
 
 	}
 
@@ -160,15 +163,13 @@ class CoraFramework {
     public function add_admin_page() {
 
 		# Parse & extract default args
-		extract( wp_parse_args( $this->config, 
-			array(
-				'page_title' => 'example',
-				'menu_title' => 'example',
-				'capability' => 'manage_options',
-				'menu_icon' => '',
-				'menu_position' => 99
-			) 
-		));
+		extract( wp_parse_args( $this->config, array(
+			'page_title' => 'example',
+			'menu_title' => 'example',
+			'capability' => 'manage_options',
+			'menu_icon' => '',
+			'menu_position' => 99
+		)));
 
 		# Add Menu page
         add_menu_page(
@@ -228,7 +229,25 @@ class CoraFramework {
 			true
 		);
 	}
+
+	/**
+	 * Localize data to be handeld by vue
+	 *
+	 * @since 1.0.0
+	 */
+    public function app_data () {
+    
+        wp_localize_script( 'cora-framework', 'CoraFrameworkData', array(
+			'nonce' => wp_create_nonce('cora-framework-nonce'),
+			'config' => $this->config,
+			'sections' => $this->sections,
+			'fields' => $this->fields,
+			'values' => $this->values,
+			'translation' => $this->translation,
+		));
 	
+	}
+
 	/**
 	 * API
 	 * 
@@ -236,7 +255,7 @@ class CoraFramework {
 	 *
 	 * @since 1.0.0
 	 */
-    public function add_section($section) {
+    public function add_section( $section ) {
 		
 		$this->sections[] = $section;
 
@@ -249,7 +268,7 @@ class CoraFramework {
 	 *
 	 * @since 1.0.0
 	 */
-    public function add_field($field) {
+    public function add_field( $field ) {
 		
 		$this->fields[] = $field;
 
