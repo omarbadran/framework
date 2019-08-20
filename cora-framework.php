@@ -99,6 +99,16 @@ class CoraFramework {
 	private $values = array();
 
 	/**
+	 * Translated strings.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var string
+	 */
+	private $translation = array();
+
+
+	/**
 	 * Primary class constructor.
 	 *
 	 * @since 1.0.0
@@ -113,13 +123,13 @@ class CoraFramework {
 		$this->config = $config;
 		
 		# Add admin page
-		add_action('admin_menu', array( $this  , "add_admin_page"), 100 );
+		add_action( 'admin_menu', array( $this  , "add_admin_page"), 100 );
 		
 		# Compile SCSS
-		add_action('admin_head', array( $this  , "style") );
+		add_action( 'admin_head', array( $this  , "style") );
 		
 		# Enqueue scripts
-		add_action('admin_enqueue_scripts', array( $this  , "scripts") );
+		add_action( 'admin_enqueue_scripts', array( $this  , "scripts") );
 
 	}
 
@@ -130,7 +140,9 @@ class CoraFramework {
 	 */
     public function dir_url() {
 
-		$url = str_replace( "\\", "/", str_replace( str_replace( "/", "\\", WP_CONTENT_DIR ), "", __DIR__ ) )  . '/';
+		$url = str_replace( "\\", "/", str_replace( str_replace( "/", "\\", WP_CONTENT_DIR ), "", __DIR__ ) );
+
+		$url .=  '/';
 
 		if ( $url ){
 			return content_url( $url );
@@ -147,26 +159,39 @@ class CoraFramework {
 	 */
     public function add_admin_page() {
 
-		$defaultArgs = array(
-			'page_title' => 'example',
-			'menu_title' => 'example',
-			'capability' => 'manage_options',
-			'menu_icon' => '',
-			'menu_position' => 99
-		);
+		# Parse & extract default args
+		extract( wp_parse_args( $this->config, 
+			array(
+				'page_title' => 'example',
+				'menu_title' => 'example',
+				'capability' => 'manage_options',
+				'menu_icon' => '',
+				'menu_position' => 99
+			) 
+		));
 
-		$args = wp_parse_args( $this->config, $defaultArgs );
-
-        add_menu_page( 
-			$args['page_title'],
-			$args['menu_title'],
-			$args['capability'],
-			$args['id'],
-			function () { include( 'view.html' ); },
-			$args['menu_icon'],
-			$args['menu_position']
+		# Add Menu page
+        add_menu_page(
+			$page_title,
+			$menu_title,
+			$capability,
+			$id,
+			array( $this, 'render_page' ),
+			$menu_icon,
+			$menu_position
 		);
 		
+	}
+
+	/**
+	 * Render page.
+	 *
+	 * @since 1.0.0
+	 */
+    public function render_page() {
+
+		include( 'view.html' );
+
 	}
 
 	/**
@@ -195,7 +220,13 @@ class CoraFramework {
 		wp_enqueue_script( 'vue', $this->url."/assets/vendor/vue/vue.js" );
 
 		# App
-		wp_enqueue_script( 'cora-framework', $this->url."/assets/js/app.js", array('vue'), $this->version, true );
+		wp_enqueue_script(
+			'cora-framework',
+			$this->url."/assets/js/app.js",
+			array('vue'),
+			$this->version,
+			true
+		);
 	}
 	
 	/**
