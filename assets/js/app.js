@@ -11,7 +11,13 @@ var CoraFramework = new  Vue({
      * 
      */
     data: {
-        message: 'hello world'
+        nonce: CoraFrameworkData.nonce,
+        config: CoraFrameworkData.config,
+        sections: CoraFrameworkData.sections,
+        fields: CoraFrameworkData.fields,
+        values: CoraFrameworkData.values,
+        translation: CoraFrameworkData.translation,
+        activeSection: CoraFrameworkData.sections[0]['id'],
     },
 
     /**

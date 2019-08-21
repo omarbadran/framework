@@ -123,14 +123,13 @@ class CoraFramework {
 		$this->config = $config;
 		
 		# Add admin page
-		add_action( 'admin_menu', array( $this  , "add_admin_page" ), 100 );
-		
+		add_action( 'admin_menu', array( $this  , "add_admin_page" ) );
 		# Compile SCSS
 		add_action( 'admin_head', array( $this  , "style" ) );
-		
+		# Enqueue styles
+		add_action( 'admin_enqueue_scripts', array( $this  , "styles" ) );
 		# Enqueue scripts
 		add_action( 'admin_enqueue_scripts', array( $this  , "scripts" ) );
-
 		# Localize data to be handeld by vue
 		add_action( 'admin_enqueue_scripts', array( $this  , "app_data") );
 
@@ -211,6 +210,18 @@ class CoraFramework {
 	}
 
 	/**
+	 * Enqueue styles.
+	 *
+	 * @since 1.0.0
+	 */
+    public function styles() {
+
+		# Vue
+		wp_enqueue_style( 'material-icons', $this->url."/assets/vendor/material-icons/material-icons.css" );
+
+	}
+
+	/**
 	 * Enqueue scripts.
 	 *
 	 * @since 1.0.0
@@ -249,9 +260,7 @@ class CoraFramework {
 	}
 
 	/**
-	 * API
-	 * 
-	 * Add section.
+	 * API : Add section
 	 *
 	 * @since 1.0.0
 	 */
@@ -262,9 +271,7 @@ class CoraFramework {
 	}
 
 	/**
-	 * API
-	 * 
-	 * Add field.
+	 * API : Add field
 	 *
 	 * @since 1.0.0
 	 */

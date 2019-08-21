@@ -19,6 +19,12 @@ $coraSample->add_section( array(
     'icon'      =>  'home',
 ));
 
+$coraSample->add_section( array( 
+    'id'        =>  'header',
+    'title'     =>  'header',
+    'icon'      =>  'sort',
+));
+
 
 /**
  *  Add fields 

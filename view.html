@@ -1,3 +1,18 @@
 <div id="cf">
-    {{message}}
+	
+	<div class="cf-body">
+	
+		<ul class="cf-nav">
+			<li 
+				v-for="section in sections" 
+				@click="activeSection = section.id" 
+				:class="{active : (activeSection == section.id)}">
+				
+				<i class="material-icons"> {{ section.icon }} </i>
+				{{ section.title }}
+			</li>
+		</ul>
+	
+	</div>
+
 </div>
