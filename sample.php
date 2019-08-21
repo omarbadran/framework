@@ -21,7 +21,7 @@ $coraSample->add_section( array(
 
 $coraSample->add_section( array( 
     'id'        =>  'header',
-    'title'     =>  'header',
+    'title'     =>  'Header',
     'icon'      =>  'sort',
 ));
 

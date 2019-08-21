@@ -26,6 +26,25 @@ var CoraFramework = new  Vue({
      */
     methods: {
         
-    }
+    },
+    
+    /**
+     * Computed Properties
+     * 
+     */
+    computed: {
 
+        activeSectionTitle: function () {
+            
+            let activeSection = this.activeSection;
+            
+            let section = this.sections.find(function(element) {
+                return element.id == activeSection;
+            });
+
+            return section.title;
+        }
+        
+    }
+    
 });
