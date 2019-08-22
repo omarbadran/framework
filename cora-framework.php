@@ -231,6 +231,20 @@ class CoraFramework {
 		# Vue
 		wp_enqueue_script( 'vue', $this->url."/assets/vendor/vue/vue.js" );
 
+		# Custom Components
+		foreach( glob($this->dir . 'assets/js/components/*.js')  as $file ) {
+
+			$name = basename($file, '.js');
+			$required = array('vue' , 'wp-color-picker');
+
+			wp_enqueue_script(
+				$name,
+				$this->url .'assets/js/components/'.$name . '.js',
+				$required
+			);
+
+		}
+		
 		# App
 		wp_enqueue_script(
 			'cora-framework',

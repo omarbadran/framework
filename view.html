@@ -16,11 +16,13 @@
 		<div class="cf-content">
 			<h2> {{ activeSectionTitle }} </h2>
 
-			<div class="cf-field" v-for="field in fields">
-				{{ field.title }}
+			<div v-for="field in currentFields" class="cf-field">
+				<span class="cf-field-title"> {{ field.title }} </span>
+				<component :is=" 'cf-'+ field.type + '-field'" v-model="values[field.section][field.id]"/>
 			</div>
 		</div>
 
+		<div class="cf-save">Save Changes</div>
 	</div>
 
 </div>

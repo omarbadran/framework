@@ -33,7 +33,7 @@ $coraSample->add_field( array(
     'id'        =>  'test_text',
     'section'   =>  'general',
     'type'      =>  'text',
-    'title'     =>  'Hello!',
+    'title'     =>  'Hello',
     'default'   =>  'hello world!'
 ));
 

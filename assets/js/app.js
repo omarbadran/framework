@@ -33,17 +33,39 @@ var CoraFramework = new  Vue({
      * 
      */
     computed: {
-
+        
+        /**
+         * Active section title
+         * 
+         * @since 1.0.0
+         */
         activeSectionTitle: function () {
-            
             let activeSection = this.activeSection;
-            
+
             let section = this.sections.find(function(element) {
                 return element.id == activeSection;
             });
 
             return section.title;
-        }
+        },
+        
+        /**
+         * Current fields in view
+         * 
+         * @since 1.0.0
+         */
+        currentFields: function () {
+            const vm = this;
+
+            let fields = vm.fields.filter(function(field) {
+                if( field.section  !== vm.activeSection ){
+                    return false;
+                }
+                return true;
+            });
+
+            return fields;
+        },
         
     }
     
