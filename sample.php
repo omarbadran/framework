@@ -25,6 +25,11 @@ $coraSample->add_section( array(
     'icon'      =>  'sort',
 ));
 
+$coraSample->add_section( array( 
+    'id'        =>  'toolbar',
+    'title'     =>  'Toolbar',
+    'icon'      =>  'layers',
+));
 
 /**
  *  Add fields 
@@ -34,7 +39,8 @@ $coraSample->add_field( array(
     'section'   =>  'general',
     'type'      =>  'text',
     'title'     =>  'Hello',
-    'default'   =>  'hello world!'
+    'default'   =>  'Hello world !',
+    'placeholder' => 'Placeholder Texst ...'
 ));
 
 

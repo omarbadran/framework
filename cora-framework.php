@@ -202,6 +202,8 @@ class CoraFramework {
     public function style() {
 
 		$compiler = new SCSSCompiler();
+		$compiler->setImportPaths( $this->dir . "assets/scss/" );
+		
 		$file = file_get_contents( $this->dir . "assets/scss/style.scss" );
 		$css = $compiler->compile( $file );	  
 		

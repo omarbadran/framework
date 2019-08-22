@@ -18,7 +18,8 @@
 
 			<div v-for="field in currentFields" class="cf-field">
 				<span class="cf-field-title"> {{ field.title }} </span>
-				<component :is=" 'cf-'+ field.type + '-field'" v-model="values[field.section][field.id]"/>
+				
+				<text-field v-if="field.type === 'text'" v-model="values[field.section][field.id]" :placeholder="field.placeholder"/>
 			</div>
 		</div>
 

@@ -1,13 +1,17 @@
 /**
- * Color
+ * Text field
  */
-Vue.component('cf-text-field', {
-    props: ['value'],
+Vue.component('text-field', {
+    props: {
+        value: String,
+        placeholder: String
+    },
     
     template: `<input 
-            class="cf-text-input"
+            class="cf-text-field"
             type="text"
-            v-bind:value="value"
-            v-on:input="$emit('input', $event.target.value)"
+            :placeholder="placeholder"
+            :value="value"
+            @input="$emit('input', $event.target.value)"
     >`,
 });

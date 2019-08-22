@@ -12,7 +12,10 @@
         margin: 0;
         min-height: 100%;
         padding: 20px 0;
-        
+        height: 600px;
+        background: #d1d6de;
+        box-sizing: border-box;
+
         li{
             float: left;
             width: calc(100% - 40px);
@@ -30,7 +33,7 @@
 
             &.active{
                 color: #535567;
-                background: #c7cad8;            
+                background: #c6c8d4;            
             }
 
             i{
@@ -45,11 +48,10 @@
         float: left;
         width: 100%;
         margin-top: 40px;
-        background: #d7dce2;
+        background: #d4dbe4;
         border-radius: 5px;
         overflow: hidden;
-        min-height: 500px;
-        max-height: 800px;
+        min-height: 600px;
         position: relative;
     }
 
@@ -58,25 +60,25 @@
         float: left;
         width: calc(100% - 190px);
         box-sizing: border-box;
-        padding: 30px 40px;
-        
+        padding: 25px 50px;
+
         h2{
             text-transform: capitalize;
             margin: 0 0 20px 0;
-            font-size: 20px;
+            font-size: 22px;
             color: #535567;
         }
 
         .cf-field{
             float: left;
             width: 100%;
-            padding: 20px 0px;   
+            padding: 25px 0px;   
             .cf-field-title{
                 float: left;
                 width: 28%;
                 font-weight: 700;
                 font-size: 14px;
-                color: #777;
+                color: #75767d;
                 line-height: 30px;
             }         
         }
@@ -92,12 +94,12 @@
         text-align: center;
         font-weight: 700;
         color: white;
-        background: #0bb959;
+        background: #06b354;
         border-radius: 3px;
         cursor: pointer;
         transition: all 0.3s;
         &:hover{
-            background: #09ac52;
+            background: #07a04c;
         }
     }
 }
@@ -107,3 +109,6 @@
 #footer-thankyou, #footer-upgrade{
     display: none;
 }
+
+
+@import 'components/text-field';
