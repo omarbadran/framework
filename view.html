@@ -8,8 +8,7 @@
 				@click="activeSection = section.id" 
 				:class="{active : (activeSection == section.id)}">
 				
-				<i class="material-icons"> {{ section.icon }} </i>
-				{{ section.title }}
+				<i class="material-icons"> {{ section.icon }} </i> {{ section.title }}
 			</li>
 		</ul>
 	
@@ -18,8 +17,13 @@
 
 			<div v-for="field in currentFields" class="cf-field">
 				<span class="cf-field-title"> {{ field.title }} </span>
-				
-				<text-field v-if="field.type === 'text'" v-model="values[field.section][field.id]" :placeholder="field.placeholder"/>
+
+				<component 
+					:is="field.type + '-field'" 
+					:class="'cf-' + field.type + '-field'"
+					v-model="values[field.section][field.id]"
+					v-bind="field">
+				</component>
 			</div>
 		</div>
 

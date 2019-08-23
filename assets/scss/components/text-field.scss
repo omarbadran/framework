@@ -1,20 +1,22 @@
-input.cf-text-field{
-    padding: 8px 12px;
-    border-radius: 5px;
-    border: 0;
-    box-shadow: none;
-    background: rgba(62, 80, 134, 0.1);
-    color: #666;
-    transition: background 0.3s;
-    cursor: pointer;
-
-    &:hover, &:active, &:focus{
-        background: rgba(62, 80, 134, 0.15);
-    }
-
-    &:active, &:focus{
+.cf-text-field{
+    input{
+        padding: 8px 12px;
+        border-radius: 5px;
         border: 0;
         box-shadow: none;
-        cursor: text;
+        background: rgba(62, 80, 134, 0.1);
+        color: #666;
+        transition: background 0.3s;
+        cursor: pointer;
+
+        &:hover, &:active, &:focus{
+            background: rgba(62, 80, 134, 0.15);
+        }
+
+        &:active, &:focus{
+            border: 0;
+            box-shadow: none;
+            cursor: text;
+        }        
     }
 }
