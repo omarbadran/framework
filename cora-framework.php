@@ -221,6 +221,9 @@ class CoraFramework {
 		# Vue
 		wp_enqueue_style( 'material-icons', $this->url."/assets/vendor/material-icons/material-icons.css" );
 
+		# Wordpress color picker
+		wp_enqueue_style( 'wp-color-picker' ); 
+
 	}
 
 	/**
@@ -235,16 +238,14 @@ class CoraFramework {
 
 		# Custom Components
 		foreach( glob($this->dir . 'assets/js/components/*.js')  as $file ) {
-
 			$name = basename($file, '.js');
-			$required = array('vue' , 'wp-color-picker');
+			$required = array('vue' , 'wp-color-picker', 'wp-color-picker');
 
 			wp_enqueue_script(
 				$name,
 				$this->url .'assets/js/components/'.$name . '.js',
 				$required
 			);
-
 		}
 		
 		# App

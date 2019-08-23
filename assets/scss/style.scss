@@ -105,10 +105,12 @@
 }
 
 
-//hide footer info
+// Hide footer info
 #footer-thankyou, #footer-upgrade{
     display: none;
 }
 
 
+// Components
 @import 'components/text-field';
+@import 'components/color-field';

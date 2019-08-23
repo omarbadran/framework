@@ -17,13 +17,13 @@
 
 			<div v-for="field in currentFields" class="cf-field">
 				<span class="cf-field-title"> {{ field.title }} </span>
-
-				<component 
-					:is="field.type + '-field'" 
-					:class="'cf-' + field.type + '-field'"
-					v-model="values[field.section][field.id]"
-					v-bind="field">
-				</component>
+				<div :class="'cf-' + field.type + '-field'">
+					<component 
+						:is="field.type + '-field'"
+						v-model="values[field.section][field.id]"
+						v-bind="field">
+					</component>					
+				</div>
 			</div>
 		</div>
 

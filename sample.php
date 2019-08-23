@@ -35,12 +35,20 @@ $coraSample->add_section( array(
  *  Add fields 
  **/
 $coraSample->add_field( array( 
-    'id'        =>  'test_text',
+    'id'        =>  'text',
     'section'   =>  'general',
     'type'      =>  'text',
-    'title'     =>  'Hello',
+    'title'     =>  'Text',
     'default'   =>  'Hello world !',
     'placeholder' => 'Placeholder Texst ...'
+));
+
+$coraSample->add_field( array( 
+    'id'        =>  'color',
+    'section'   =>  'general',
+    'type'      =>  'color',
+    'title'     =>  'Color',
+    'default'   =>  '#ffffff',
 ));
 
 
