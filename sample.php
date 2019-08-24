@@ -39,8 +39,8 @@ $coraSample->add_field( array(
     'section'   =>  'general',
     'type'      =>  'text',
     'title'     =>  'Text',
-    'default'   =>  'Hello world !',
-    'placeholder' => 'Placeholder Texst ...'
+    'default'   =>  'Hello world',
+    'placeholder' => 'Type here ...'
 ));
 
 $coraSample->add_field( array( 
@@ -49,6 +49,15 @@ $coraSample->add_field( array(
     'type'      =>  'color',
     'title'     =>  'Color',
     'default'   =>  '#ffffff',
+));
+
+$coraSample->add_field( array( 
+    'id'        =>  'textarea',
+    'section'   =>  'general',
+    'type'      =>  'textarea',
+    'title'     =>  'Textarea',
+    'default'   =>  'Hello world',
+    'placeholder' => 'Type here ...'
 ));
 
 

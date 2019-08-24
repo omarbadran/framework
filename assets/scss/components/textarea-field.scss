@@ -1,13 +1,12 @@
-.cf-text-field{
-    input{
-        padding: 7px 12px;
+.cf-textarea-field{
+    textarea{
+        padding: 8px 12px;
         border-radius: 5px;
         border: 0;
         box-shadow: none;
         background: rgba(62, 80, 134, 0.1);
         color: #666;
         transition: background 0.3s;
-        width: 180px;
         max-width: 100%;
 
         &:hover, &:active, &:focus{
