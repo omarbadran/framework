@@ -60,6 +60,13 @@ $coraSample->add_field( array(
     'placeholder' => 'Type here ...'
 ));
 
+$coraSample->add_field( array( 
+    'id'        =>  'switch',
+    'section'   =>  'general',
+    'type'      =>  'switch',
+    'title'     =>  'Switch',
+    'default'   =>  true,
+));
 
 // echo '<pre>';
 // var_dump( $coraSample );

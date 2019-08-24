@@ -64,7 +64,7 @@
 
         h2{
             text-transform: capitalize;
-            margin: 0 0 20px 0;
+            margin: 0 0 25px 0;
             font-size: 22px;
             color: #535567;
         }
@@ -72,15 +72,14 @@
         .cf-field{
             float: left;
             width: 100%;
-            padding: 25px 0px;   
+            padding: 26px 0px;   
             .cf-field-title{
                 float: left;
                 width: 28%;
                 font-weight: 700;
                 font-size: 14px;
                 color: #75767d;
-                line-height: 30px;
-            }         
+            }
         }
     }
 
@@ -115,3 +114,4 @@
 @import 'components/text-field';
 @import 'components/textarea-field';
 @import 'components/color-field';
+@import 'components/switch-field';
