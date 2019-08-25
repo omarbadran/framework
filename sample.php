@@ -48,7 +48,7 @@ $coraSample->add_field( array(
     'section'   =>  'general',
     'type'      =>  'color',
     'title'     =>  'Color',
-    'default'   =>  '#ffffff',
+    'default'   =>  '#2026cc',
 ));
 
 $coraSample->add_field( array( 
@@ -67,6 +67,25 @@ $coraSample->add_field( array(
     'title'     =>  'Switch',
     'default'   =>  true,
 ));
+
+$coraSample->add_field( array( 
+    'id'        =>  'select',
+    'section'   =>  'general',
+    'type'      =>  'select',
+    'title'     =>  'Select',
+    'options'   =>   array(
+        array(
+            'id'   =>  'sam',
+            'text' =>  'Sam Harris'
+        ),
+        array(
+            'id'   =>  'elon',
+            'text' =>  'Elon Musk'
+        ),
+    ),
+    'default'   =>  'elon',
+));
+
 
 // echo '<pre>';
 // var_dump( $coraSample );
