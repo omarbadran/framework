@@ -76,16 +76,22 @@ $coraSample->add_field( array(
     'options'   =>   array(
         array(
             'id'   =>  'sam',
-            'text' =>  'Sam Harris'
+            'text' =>  'Sam <i>Harris</i>'
         ),
         array(
             'id'   =>  'elon',
             'text' =>  'Elon Musk'
         ),
     ),
-    'default'   =>  'elon',
 ));
 
+$coraSample->add_field( array( 
+    'id'        =>  'icon',
+    'section'   =>  'general',
+    'type'      =>  'icon',
+    'title'     =>  'Icon',
+    'default'   =>  'home',
+));
 
 // echo '<pre>';
 // var_dump( $coraSample );

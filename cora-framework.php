@@ -275,6 +275,7 @@ class CoraFramework {
 			'fields' => $this->fields,
 			'values' => $this->values,
 			'translation' => $this->translation,
+			'url' => $this->url
 		));
 	
 	}

@@ -7,6 +7,7 @@ Vue.component('select-field', {
     props: {
         value: String,
         options: Array,
+        select2Args: Object,
     },
 
     template: `
@@ -17,7 +18,11 @@ Vue.component('select-field', {
         var vm = this;
                 
         jQuery(this.$el)
-			.select2({ data: this.options })
+			.select2({ 
+                data: this.options,
+                escapeMarkup: markup => markup,
+                ...vm.select2Args
+            })
 			.val(this.value)
 			.trigger('change')
 			.on('change', function () {
