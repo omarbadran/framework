@@ -19,31 +19,20 @@ Vue.component('icon-field', {
     `,
 
     created: function () {
-        vm = this;
+        var vm = this;
+        const JSONFile = CoraFrameworkData.url + 'assets/vendor/material-icons/icons.json';
 
-        jQuery.getJSON( CoraFrameworkData.url + 'assets/vendor/material-icons/icons.json' ,
-            function( data ) {                
-                var icons = data.categories.map(category => { 
-                    var newCategory = {
-                        text: category.name,
-                        children: category.icons.map( icon => {
-                            return {
-                                id: icon.ligature,
-                                text: `
-                                    <div class="cf-icon-field-item">
-                                        ${icon.name}
-                                        <i class="material-icons material-icons-${icon.ligature}"></i>
-                                    </div>
-                                `,
-                            }
-                        })
-                    }
+        if( window.materialIconsList ){
 
-                    return newCategory;
-                });
-                
-                vm.icons = icons;
-            }
-        )
+            vm.icons = window.materialIconsList;
+
+        } else {
+
+            jQuery.getJSON( JSONFile , data => {                
+                window.materialIconsList = data;
+                vm.icons = data;
+            })
+
+        }
     }
 });
