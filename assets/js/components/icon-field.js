@@ -15,7 +15,7 @@ Vue.component('icon-field', {
     },
 
     template: `
-        <select-field v-if="icons" :options="icons" :value="value" :select2Args="{width: '225px'}"/>
+        <select-field v-if="icons" @input="$emit('input', $event)" :options="icons" :value="value"/>
     `,
 
     created: function () {

@@ -65,7 +65,6 @@ $coraSample->add_field( array(
     'section'   =>  'general',
     'type'      =>  'switch',
     'title'     =>  'Switch',
-    'default'   =>  true,
 ));
 
 $coraSample->add_field( array( 
@@ -90,7 +89,38 @@ $coraSample->add_field( array(
     'section'   =>  'general',
     'type'      =>  'icon',
     'title'     =>  'Icon',
-    'default'   =>  'home',
+    'default'   =>  'book'
+));
+
+$coraSample->add_field( array( 
+    'id'        =>  'repeater',
+    'section'   =>  'header',
+    'type'      =>  'repeater',
+    'title'     =>  'Repeater',
+    'item_title' => 'text',
+    'fields'    =>  array(
+        array( 
+            'id'        =>  'text',
+            'type'      =>  'text',
+            'title'     =>  'Text',
+            'default'   =>  'Hello world',
+            'placeholder' => 'Type here ...'
+        ),
+        array( 
+            'id'        =>  'Icon',
+            'type'      =>  'icon',
+            'title'     =>  'Icon',
+        ),
+    ),
+    'default'   => array(
+        array(
+            'text'  => 'Dashboard',
+        )
+    ),
+    'new_item_default'   => array(
+        'text'  => 'New Item',
+        'select' => 'sam'
+    )
 ));
 
 // echo '<pre>';

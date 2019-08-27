@@ -7,11 +7,10 @@ Vue.component('select-field', {
     props: {
         value: String,
         options: Array,
-        select2Args: Object,
     },
 
     template: `
-        <select><slot></slot></select>
+        <select style="max-width:100%; width: 200px;"><slot></slot></select>
     `,
 
     mounted: function () {
@@ -21,7 +20,7 @@ Vue.component('select-field', {
 			.select2({ 
                 data: this.options,
                 escapeMarkup: markup => markup,
-                ...vm.select2Args
+                width: 'element'
             })
 			.val(this.value)
 			.trigger('change')

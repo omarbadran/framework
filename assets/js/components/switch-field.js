@@ -5,7 +5,10 @@ Vue.component('switch-field' , {
     inheritAttrs: false,
 
     props: {
-        value: [String, Boolean],
+        value: {
+            type: [String, Boolean],
+            default: false
+        },
     },
 
     template: `

@@ -1,0 +1,91 @@
+.cf-repeater-field{
+    float: left;
+    width: 72%;
+
+    & > div{
+        display: grid;
+    }
+
+    .cf-repeater-item{
+        float: left;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        background: #fff;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #c8ced9;
+        width: 250px;
+        max-width: 100%;
+        overflow: hidden;
+
+        .cf-repeater-item-head{
+            padding: 0px 15px;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            float: left;
+            box-sizing: border-box;
+            line-height: 45px;
+            height: 45px;
+            cursor: pointer;
+
+            span{
+                font-weight: bold;
+                font-size: 14px;
+                color: #808086;
+            }
+
+            i{
+                float: right;
+                line-height: inherit;
+                font-size: 18px;
+                color: #ced0da;                
+            }
+        }
+
+        .cf-repeater-item-fields{
+            padding: 5px 20px;
+            border-top: 1px solid #f1f1f1;
+            background: #fff;
+            float: left;
+            width: 100%;
+            box-sizing: border-box;
+            
+            .cf-repeater-item-field{
+                padding: 15px 0px;
+
+                .cf-repeater-item-title{
+                    float: left;
+                    width: 100%;
+                    font-weight: 700;
+                    font-size: 13px;
+                    color: #888;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+
+    .cf-repeater-add-item{
+        float: left;
+        display: block;
+        margin-top: 20px;
+        font-weight: bold;
+        background: #06b354;
+        width: fit-content;
+        padding: 6px 12px;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover{
+            background: #07a04c;
+        }
+    }
+
+    //Fields Style
+    .select2-selection{
+        border: 1px solid #e8e8e8 !important;
+    }
+}
