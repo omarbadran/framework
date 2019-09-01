@@ -238,11 +238,13 @@ class CoraFramework {
 		wp_enqueue_script( 'vue', $this->url."/assets/vendor/vue/vue.js" );
 		# select2
 		wp_enqueue_script( 'select2', $this->url."/assets/vendor/select2/select2.min.js" , array('jquery'));
+		# slicksort
+		wp_enqueue_script( 'vue-slicksort', $this->url."/assets/vendor/slicksort/vue-slicksort.min.js" , array('vue'));
 
 		# Custom Components
 		foreach( glob($this->dir . 'assets/js/components/*.js')  as $file ) {
 			$name = basename($file, '.js');
-			$required = array('vue' , 'wp-color-picker', 'wp-color-picker', 'select2');
+			$required = array('vue' , 'wp-color-picker', 'wp-color-picker', 'select2', 'vue-slicksort');
 
 			wp_enqueue_script(
 				$name,
