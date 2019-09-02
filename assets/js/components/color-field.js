@@ -9,13 +9,15 @@ Vue.component('color-field', {
     },
 
     template: `
-        <input type="text">
-    `,
+        <div>
+            <input ref="color" type="text">
+        </div>    
+        `,
 
     mounted: function () {
         var vm = this;
                 
-        jQuery(this.$el).val(this.value).wpColorPicker({
+        jQuery(this.$refs.color).val(this.value).wpColorPicker({
             defaultColor: this.value,
 
             change: function(event, ui) {
@@ -26,11 +28,13 @@ Vue.component('color-field', {
 
     watch: {
         value: function (value) {
-            jQuery(this.$el).wpColorPicker('color', value);
+            jQuery(this.$refs.color).wpColorPicker('color', value);
         }
     },
 
-    destroyed: function () {
-        jQuery(this.$el).off().wpColorPicker('destroy');
+    beforeDestroy: function () {
+        console.log(this.$refs.color);
+        
+        jQuery(this.$refs.color).remove();
     }
 });

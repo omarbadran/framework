@@ -49,6 +49,7 @@ $coraSample->add_field( array(
     'type'      =>  'color',
     'title'     =>  'Color',
     'default'   =>  '#2026cc',
+    'condition' => array( 'select', '===' , 'elon')
 ));
 
 $coraSample->add_field( array( 
@@ -72,6 +73,7 @@ $coraSample->add_field( array(
     'section'   =>  'general',
     'type'      =>  'select',
     'title'     =>  'Select',
+    'condition' => array( 'switch', '===' , true),
     'options'   =>   array(
         array(
             'id'   =>  'sam',

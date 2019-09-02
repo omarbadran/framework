@@ -14,7 +14,7 @@ Vue.component('repeater-field', {
             default: () => []
         },
         new_item_default: {
-            type: Array,
+            type: Object,
             default: () => []
         },
         item_title: {
@@ -36,7 +36,7 @@ Vue.component('repeater-field', {
 
     template: `
         <div>
-            <SlickList v-if="values.length" lockAxis="y" v-model="values" :useDragHandle="true" class="cf-repeater-items">
+            <SlickList v-if="values.length" v-model="values" :useDragHandle="true" class="cf-repeater-items">
                 <SlickItem v-for="(item, itemIndex) in values" :index="itemIndex" :key="itemIndex" class="cf-repeater-item">
                     
                     <div class="cf-repeater-item-head"  @click="activeItem === item ? activeItem = false : activeItem = item">

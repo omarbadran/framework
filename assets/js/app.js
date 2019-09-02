@@ -58,10 +58,57 @@ var CoraFramework = new  Vue({
             const vm = this;
 
             let fields = vm.fields.filter(function(field) {
+                let res = true;
+
+                // Current section?
                 if( field.section  !== vm.activeSection ){
                     return false;
                 }
-                return true;
+
+                // Conditions
+                if (field.condition) {
+                    compareValue = field.condition[2];
+                    target = vm.values[field.section][field.condition[0]];
+
+                    switch (field.condition[1]) {
+                        case '==':
+                            res = compareValue == target;
+                            break;
+                        
+                        case '===':
+                            res = compareValue === target;
+                            break;
+
+                        case '!=':
+                            res = compareValue != target;
+                            break;
+
+                        case '>':
+                            res = compareValue > target;
+                            break;
+                        
+                        case '<':
+                            res = compareValue < target;
+                            break;
+
+                        case '>=':
+                            res = compareValue >= target;
+                            break;
+                        
+                        case '<=':
+                            res = compareValue <= target;
+                            break;
+
+                        default:
+                            res = false;
+                            break;
+                    }
+                    console.log(target, field.condition[1], compareValue, res);
+                    
+                }
+
+
+                return res;
             });
 
             return fields;
