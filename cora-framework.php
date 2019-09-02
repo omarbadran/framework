@@ -290,7 +290,10 @@ class CoraFramework {
     public function add_section( $section ) {
 		
 		$this->sections[] = $section;
-
+		
+		if ( !isset($this->values[ $section['id'] ]) ) {
+			$this->values[$section['id']] = array();
+		}
 	}
 
 	/**

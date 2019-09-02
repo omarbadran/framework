@@ -56,7 +56,7 @@
     }
 
     .cf-repeater-item-fields{
-        padding: 5px 20px;
+        padding: 10px 20px;
         border-top: 1px solid #f1f1f1;
         background: #fff;
         float: left;
@@ -64,8 +64,10 @@
         box-sizing: border-box;
         
         .cf-repeater-item-field{
-            padding: 15px 0px;
-
+            padding: 10px 0px;
+            float: left;
+            width: 100%;
+        
             .cf-repeater-item-title{
                 float: left;
                 width: 100%;
@@ -81,12 +83,30 @@
             }
         }
     }
+    
+    //Nested repeater :(
+    .cf-repeater-field{
+        width: 100%;
+
+        .cf-repeater-item{
+            width: 100%;
+            .cf-repeater-item-fields{
+                padding: 0px 12px;
+                box-sizing: content-box;
+                width: inherit;
+            }
+        }
+    }
+
+}
+
+.cf-repeater-items{
+    margin-bottom: 20px;
 }
 
 .cf-repeater-add-item{
     float: left;
     display: block;
-    margin-top: 20px;
     font-weight: bold;
     background: #06b354;
     width: fit-content;

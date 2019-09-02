@@ -4,7 +4,28 @@
 Vue.component('repeater-field', {
     inheritAttrs: false,
 
-    props: ['value', 'fields', 'new_item_default', 'item_title'],
+    props: {
+        value: {
+            type: Array,
+            default: () => []
+        },
+        fields: {
+            type: Array,
+            default: () => []
+        },
+        new_item_default: {
+            type: Array,
+            default: () => []
+        },
+        item_title: {
+            type: String,
+            default:  function () {
+                if( this.fields[0] ){
+                    return this.fields[0]['id'];
+                }
+            }
+        }
+    },
     
     data: function() {
         return {
@@ -15,7 +36,7 @@ Vue.component('repeater-field', {
 
     template: `
         <div>
-            <SlickList lockAxis="y" v-model="values" :useDragHandle="true">
+            <SlickList v-if="values.length" lockAxis="y" v-model="values" :useDragHandle="true" class="cf-repeater-items">
                 <SlickItem v-for="(item, itemIndex) in values" :index="itemIndex" :key="itemIndex" class="cf-repeater-item">
                     
                     <div class="cf-repeater-item-head"  @click="activeItem === item ? activeItem = false : activeItem = item">
@@ -42,6 +63,7 @@ Vue.component('repeater-field', {
 
                 </SlickItem>
             </SlickList>
+            
             <div class="cf-repeater-add-item" @click="values.push({...new_item_default})">Add Item</div>
         </div>
     `,
@@ -51,7 +73,7 @@ Vue.component('repeater-field', {
         itemTitle: function (itemIndex) {
             var title = this.values[itemIndex][this.item_title];
             
-            if (title.length > 0) {
+            if (title && title.length > 0) {
                 return title;
             }
 
@@ -64,8 +86,6 @@ Vue.component('repeater-field', {
         values : function () {
             this.$emit('input', this.values);
         },
-
-
     },
 
     components: {
