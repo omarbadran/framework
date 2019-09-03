@@ -1,0 +1,26 @@
+.cf-image-select-field{
+
+    .cf-image-select-item{
+        float: left;
+        cursor: pointer;
+        width: min-content;
+        margin-right: 12px;
+
+        img{
+            border: 3px solid #cacdd4;
+            transition: all 0.2s;
+        }
+
+        small{
+            float: left;
+        }
+
+        &.cf_selected{
+            img{
+                border-color: #0073aa;
+            }
+            border-color: #eeeeee;
+        }
+    }
+
+}
