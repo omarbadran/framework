@@ -3,7 +3,7 @@
     display: block;
     width: 800px;
     margin: 0px auto 0px auto;
-    padding: 20px 0px;
+    padding: 10px 0px;
     position: relative;
 
     .cf-nav{
@@ -48,7 +48,7 @@
     .cf-body{
         float: left;
         width: 100%;
-        margin-top: 35px;
+        margin-top: 30px;
         background: #d2d9e4;
         border-radius: 5px;
         min-height: 500px;
@@ -66,8 +66,8 @@
 
         span{
             float: left;
-            margin: 25px 0px 18px 15px;
-            padding: 3px 6px;
+            margin: 27px 0px 18px 20px;
+            padding: 2px 8px;
             background: #d2d9e4;
             border-radius: 3px;
             font-size: 11px;
@@ -140,3 +140,4 @@
 @import 'components/select-field';
 @import 'components/icon-field';
 @import 'components/repeater-field';
+@import 'components/image-field';

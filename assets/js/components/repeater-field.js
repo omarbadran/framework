@@ -65,7 +65,7 @@ Vue.component('repeater-field', {
                 </SlickItem>
             </SlickList>
             
-            <div class="cf-repeater-add-item" @click="values.push({...new_item_default})">Add Item</div>
+            <div class="button" @click="values.push({...new_item_default})">Add Item</div>
         </div>
     `,
 

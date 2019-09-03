@@ -244,6 +244,8 @@ class CoraFramework {
 		wp_enqueue_script( 'vue-slicksort', $this->url."/assets/vendor/slicksort/vue-slicksort.min.js" , array('vue'));
 		# pickr
 		wp_enqueue_script( 'pickr', $this->url."/assets/vendor/pickr/pickr.min.js" , array('vue'));
+		# Media
+		wp_enqueue_media();
 
 		# Custom Components
 		foreach( glob($this->dir . 'assets/js/components/*.js')  as $file ) {

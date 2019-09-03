@@ -1,0 +1,25 @@
+.cf-image-field{
+    input{
+        padding: 4px 12px 5px 12px;
+        border-radius: 3px;
+        border: 0;
+        box-shadow: none;
+        background: rgba(62, 80, 134, 0.1);
+        color: #666;
+        transition: background 0.3s;
+        width: 180px;
+        max-width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+        
+        &:hover, &:active, &:focus{
+            background: rgba(62, 80, 134, 0.15);
+        }
+
+        &:active, &:focus{
+            border: 0;
+            box-shadow: none;
+            cursor: text;
+        }        
+    }
+}
