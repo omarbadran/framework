@@ -121,3 +121,23 @@
         background: #1db360;
     }
 }
+
+.cf-repeater-remove-item{
+    float: left;
+    display: block;
+    font-weight: 800;
+    background: #fdd5d5;
+    width: fit-content;
+    padding: 3px 10px;
+    border-radius: 3px;
+    color: #f66;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 15px;
+    margin-bottom: 5px;
+            
+    &:hover{
+        background: #f7c0c0;
+    }
+}

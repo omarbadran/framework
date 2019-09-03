@@ -40,7 +40,7 @@ Vue.component('repeater-field', {
                 <SlickItem v-for="(item, itemIndex) in values" :index="itemIndex" :key="itemIndex" class="cf-repeater-item">
                     
                     <div class="cf-repeater-item-head"  @click="activeItem === item ? activeItem = false : activeItem = item">
-                        <i class="material-icons cf-drag-handle" v-handle>drag_handle</i>
+                        <i class="material-icons cf-drag-handle" v-handle>menu</i>
 
                         <span v-if="itemTitle(itemIndex)" v-html="itemTitle(itemIndex)"></span>
                         
@@ -59,6 +59,7 @@ Vue.component('repeater-field', {
                                 </component>					
                             </div>
                         </div>
+                        <div class="cf-repeater-remove-item" @click="removeItem(itemIndex)">Remove</div>
                     </div>
 
                 </SlickItem>
@@ -78,8 +79,13 @@ Vue.component('repeater-field', {
             }
 
             return false;
-        }
+        },
         
+        removeItem: function (index) {
+            if( confirm('Are You Sure?') ){
+                Vue.delete(this.values, index);
+            }
+        }
     },
 
     watch: {
