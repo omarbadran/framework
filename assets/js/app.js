@@ -25,7 +25,32 @@ var CoraFramework = new  Vue({
      * 
      */
     methods: {
-        
+
+        /**
+         * Decide to show or hide a field
+         * 
+         * @since 1.0.0
+         */
+        showField: function (field) {
+            const vm = this;
+            let res = true;
+
+            // Current section?
+            if( field.section  !== vm.activeSection ){
+                return false;
+            }
+
+            // Check conditions
+            if (field.condition) {
+                compareValue = field.condition[2];
+                target = vm.values[field.section][field.condition[0]];
+                
+                res = eval(`compareValue ${field.condition[1]} target`);
+            }
+
+            return res;
+        },
+
     },
     
     /**
@@ -47,75 +72,8 @@ var CoraFramework = new  Vue({
             });
 
             return section.title;
-        },
-        
-        /**
-         * Current fields in view
-         * 
-         * @since 1.0.0
-         */
-        currentFields: function () {
-            const vm = this;
+        }
 
-            let fields = vm.fields.filter(function(field) {
-                let res = true;
-
-                // Current section?
-                if( field.section  !== vm.activeSection ){
-                    return false;
-                }
-
-                // Conditions
-                if (field.condition) {
-                    compareValue = field.condition[2];
-                    target = vm.values[field.section][field.condition[0]];
-
-                    switch (field.condition[1]) {
-                        case '==':
-                            res = compareValue == target;
-                            break;
-                        
-                        case '===':
-                            res = compareValue === target;
-                            break;
-
-                        case '!=':
-                            res = compareValue != target;
-                            break;
-
-                        case '>':
-                            res = compareValue > target;
-                            break;
-                        
-                        case '<':
-                            res = compareValue < target;
-                            break;
-
-                        case '>=':
-                            res = compareValue >= target;
-                            break;
-                        
-                        case '<=':
-                            res = compareValue <= target;
-                            break;
-
-                        default:
-                            res = false;
-                            break;
-                    }
-                    
-                    if (res === false) {
-                        Vue.delete(vm.values[field.section], field.id);
-                    }
-                }
-
-
-                return res;
-            });
-
-            return fields;
-        },
-        
     }
     
 });

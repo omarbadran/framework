@@ -15,10 +15,10 @@
 		<div class="cf-content">
 			<h2> {{ activeSectionTitle }} </h2>
 
-			<div v-for="field in currentFields" class="cf-field">
+			<div v-for="field in fields" v-show="showField(field)" class="cf-field">
 				<span class="cf-field-title"> {{ field.title }} </span>
 				<div :class="'cf-' + field.type + '-field'">
-					<component 
+					<component
 						:is="field.type + '-field'"
 						v-model="values[field.section][field.id]"
 						v-bind="field">
