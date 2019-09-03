@@ -5,36 +5,59 @@ Vue.component('color-field', {
     inheritAttrs: false,
     
     props: {
-        value: String,
+        value: {
+            type: String,
+            default: '#000'
+        },
+        rgba: Boolean,
+        clear: Boolean,
     },
 
-    template: `
-        <div>
-            <input ref="color" type="text">
-        </div>    
-        `,
+    data: function () {
+        return {
+            pickr: false
+        }
+    },
+
+    template: `<div>
+        <div ref="color"></div>
+    </div>`,
 
     mounted: function () {
         var vm = this;
-                
-        jQuery(this.$refs.color).val(this.value).wpColorPicker({
-            defaultColor: this.value,
 
-            change: function(event, ui) {
-                vm.$emit('input', ui.color.toString());
+        //Init color picker
+        vm.pickr = Pickr.create({
+            el: vm.$refs.color,
+            theme: 'nano',
+            default: vm.value,
+            defaultRepresentation: 'RGBA',
+            components: {
+                preview: true,
+                opacity: true,
+                hue: true,
+                interaction: {
+                    rgba: vm.rgba,
+                    input: true,
+                    clear: vm.clear,
+                    save: true
+                }
             }
         });
+
+        // listen to changes
+        vm.pickr.on('change', color => {
+            vm.$emit('input', color.toRGBA().toString());
+        })
     },
 
     watch: {
         value: function (value) {
-            jQuery(this.$refs.color).wpColorPicker('color', value);
+            this.pickr.setColor(value)
         }
     },
 
     beforeDestroy: function () {
-        console.log(this.$refs.color);
-        
-        jQuery(this.$refs.color).remove();
+        this.pickr.destroyAndRemove()
     }
 });

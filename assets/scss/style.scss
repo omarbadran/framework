@@ -15,7 +15,8 @@
         background: #cfd4de;
         box-sizing: border-box;
         position: absolute;
-        
+        border-radius: 5px 0px 0px 5px;
+
         li{
             float: left;
             width: calc(100% - 40px);
@@ -50,7 +51,6 @@
         margin-top: 40px;
         background: #d2d9e4;
         border-radius: 5px;
-        overflow: hidden;
         min-height: 500px;
         position: relative;
         margin-bottom: 50px;

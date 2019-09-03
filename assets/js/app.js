@@ -103,8 +103,10 @@ var CoraFramework = new  Vue({
                             res = false;
                             break;
                     }
-                    console.log(target, field.condition[1], compareValue, res);
                     
+                    if (res === false) {
+                        Vue.delete(vm.values[field.section], field.id);
+                    }
                 }
 
 

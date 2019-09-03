@@ -222,6 +222,8 @@ class CoraFramework {
 		wp_enqueue_style( 'material-icons', $this->url."/assets/vendor/material-icons/material-icons.css" );
 		# select2
 		wp_enqueue_style( 'select2', $this->url."/assets/vendor/select2/select2.min.css");
+		# pickr
+		wp_enqueue_style( 'pickr', $this->url."/assets/vendor/pickr/nano.min.css");
 		# Wordpress color picker
 		wp_enqueue_style( 'wp-color-picker' ); 
 
@@ -240,11 +242,13 @@ class CoraFramework {
 		wp_enqueue_script( 'select2', $this->url."/assets/vendor/select2/select2.min.js" , array('jquery'));
 		# slicksort
 		wp_enqueue_script( 'vue-slicksort', $this->url."/assets/vendor/slicksort/vue-slicksort.min.js" , array('vue'));
+		# pickr
+		wp_enqueue_script( 'pickr', $this->url."/assets/vendor/pickr/pickr.min.js" , array('vue'));
 
 		# Custom Components
 		foreach( glob($this->dir . 'assets/js/components/*.js')  as $file ) {
 			$name = basename($file, '.js');
-			$required = array('vue' , 'wp-color-picker', 'wp-color-picker', 'select2', 'vue-slicksort');
+			$required = array('vue' , 'wp-color-picker', 'wp-color-picker', 'select2', 'vue-slicksort', 'pickr');
 
 			wp_enqueue_script(
 				$name,
