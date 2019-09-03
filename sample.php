@@ -7,6 +7,7 @@ $coraSample = new CoraFramework( array(
     'id'         => 'cora',
     'page_title' => 'Cora Settings',
     'menu_title' => 'Cora',
+    'display_version' => 'v1.0.0'
 ));
 
 
