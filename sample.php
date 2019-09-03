@@ -113,6 +113,7 @@ $coraSample->add_field( array(
             'id'        =>  'Icon',
             'type'      =>  'icon',
             'title'     =>  'Icon',
+            'condition' => array( 'text', '===' , 'semsem'),
         ),
     ),
     'default'   => array(

@@ -49,7 +49,7 @@ Vue.component('repeater-field', {
                     </div>
 
                     <div v-show="activeItem === item" class="cf-repeater-item-fields">
-                        <div v-for="field in fields" class="cf-repeater-item-field">
+                        <div v-for="field in fields" v-if="showField(field, itemIndex)" class="cf-repeater-item-field">
                             <span class="cf-repeater-item-title"> {{ field.title }} </span>
                             <div :class="'cf-' + field.type + '-field'">
                                 <component 
@@ -85,7 +85,27 @@ Vue.component('repeater-field', {
             if( confirm('Are You Sure?') ){
                 Vue.delete(this.values, index);
             }
-        }
+        },
+
+        /**
+         * Decide to show or hide a field
+         * 
+         * @since 1.0.0
+         */
+        showField: function (field, itemIndex) {
+            const vm = this;
+            let res = true;
+
+            if (field.condition) {
+                compareValue = field.condition[2];
+                target = vm.values[itemIndex][field.condition[0]];
+                
+                res = eval(`compareValue ${field.condition[1]} target`);
+            }
+
+            return res;
+        },
+
     },
 
     watch: {
