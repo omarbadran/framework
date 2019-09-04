@@ -14,7 +14,6 @@ Vue.component('text-field', {
             type="text"
             :placeholder="placeholder"
             :value="value"
-            @input="$emit('input', $event.target.value)"
-        >
+            @input="$emit('input', $event.target.value)">
     `,
 });

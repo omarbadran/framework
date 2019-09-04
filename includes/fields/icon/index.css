@@ -1,0 +1,10 @@
+.cf-icon-field-item{
+    text-transform: capitalize;
+    line-height: inherit;
+}
+.cf-icon-field-item i{
+    font-size: 20px;
+    float: left;
+    line-height: inherit;
+    margin-right: 5px;
+}

@@ -1,0 +1,24 @@
+.cf-text-field input {
+    padding: 7px 12px;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: none;
+    background: rgba(62, 80, 134, 0.1);
+    color: #666;
+    transition: background 0.3s;
+    width: 180px;
+    max-width: 100%;
+}
+
+.cf-text-field input:hover,
+.cf-text-field input:active,
+.cf-text-field input:focus{
+    background: rgba(62, 80, 134, 0.15);
+}
+
+.cf-text-field input:active,
+.cf-text-field input:focus{
+    border: 0;
+    box-shadow: none;
+    cursor: text;
+}

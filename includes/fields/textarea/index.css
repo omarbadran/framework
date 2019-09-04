@@ -1,0 +1,23 @@
+.cf-textarea-field textarea {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: none;
+    background: rgba(62, 80, 134, 0.1);
+    color: #666;
+    transition: background 0.3s;
+    max-width: 100%;
+}
+
+.cf-textarea-field textarea:hover,
+.cf-textarea-field textarea:active,
+.cf-textarea-field textarea:focus {
+    background: rgba(62, 80, 134, .15);
+}
+
+.cf-textarea-field textarea:active,
+.cf-textarea-field textarea:focus {
+    border: 0;
+    box-shadow: none;
+    cursor: text;
+}

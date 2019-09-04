@@ -40,7 +40,7 @@ Vue.component('repeater-field', {
                 <SlickItem v-for="(item, itemIndex) in values" :index="itemIndex" :key="itemIndex" class="cf-repeater-item">
                     
                     <div class="cf-repeater-item-head"  @click="activeItem === item ? activeItem = false : activeItem = item">
-                        <i class="material-icons cf-drag-handle" v-handle>menu</i>
+                        <i class="dashicons dashicons-menu-alt2 cf-drag-handle" v-handle></i>
 
                         <span v-if="itemTitle(itemIndex)" v-html="itemTitle(itemIndex)"></span>
                         

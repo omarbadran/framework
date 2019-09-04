@@ -120,7 +120,7 @@
         cursor: pointer;
         transition: all 0.3s;
         &:hover{
-            background: #1db360;
+            background: rgb(10, 167, 81);
         }
     }
 }
@@ -130,15 +130,3 @@
 #footer-thankyou, #footer-upgrade{
     display: none;
 }
-
-
-// Components
-@import 'components/text-field';
-@import 'components/textarea-field';
-@import 'components/color-field';
-@import 'components/switch-field';
-@import 'components/select-field';
-@import 'components/icon-field';
-@import 'components/repeater-field';
-@import 'components/image-field';
-@import 'components/image-select-field';

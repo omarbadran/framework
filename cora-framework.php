@@ -109,15 +109,17 @@ class CoraFramework {
 
 
 	/**
-	 * Primary class constructor.
+	 * Class constructor.
 	 *
-	 * @since 1.0.0
+     * @since       1.0.0
+     * @access      public
+     * @return      void
 	 */
 	public function __construct( $config ) {
 
 		# Define paths
-        $this->dir = dirname( __FILE__ ) . "/";
-		$this->url = $this->dir_url();
+        $this->dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
+        $this->url = site_url( str_replace( str_replace( '\\', '/', ABSPATH ), '', $this->dir ) );
 		
 		# Configuration
 		$this->config = $config;
@@ -132,32 +134,20 @@ class CoraFramework {
 		add_action( 'admin_enqueue_scripts', array( $this  , "scripts" ) );
 		# Localize data to be handeld by vue
 		add_action( 'admin_enqueue_scripts', array( $this  , "app_data") );
-
-	}
-
-	/**
-	 * Current dir url.
-	 *
-	 * @since 1.0.0
-	 */
-    public function dir_url() {
-
-		$url = str_replace( "\\", "/", str_replace( str_replace( "/", "\\", WP_CONTENT_DIR ), "", __DIR__ ) );
-
-		$url .=  '/';
-
-		if ( $url ){
-			return content_url( $url );
+		
+		# Autoload Fields
+		foreach( glob($this->dir . 'includes/fields/*')  as $folder ) {
+			require_once $folder. '/index.php';
 		}
-		
-		return false;
-		
+
 	}
 
 	/**
 	 * Add admin page.
 	 *
-	 * @since 1.0.0
+     * @since       1.0.0
+     * @access      public
+     * @return      void
 	 */
     public function add_admin_page() {
 
@@ -167,37 +157,32 @@ class CoraFramework {
 			'menu_title' => 'example',
 			'capability' => 'manage_options',
 			'menu_icon' => '',
-			'menu_position' => 99
+			'menu_position' => 99,
+			'render_page' => array( $this, 'render_page' )
 		)));
 
 		# Add Menu page
-        add_menu_page(
-			$page_title,
-			$menu_title,
-			$capability,
-			$id,
-			array( $this, 'render_page' ),
-			$menu_icon,
-			$menu_position
-		);
+        add_menu_page( $page_title, $menu_title, $capability, $id, $render_page, $menu_icon, $menu_position );
 		
 	}
 
 	/**
 	 * Render page.
 	 *
-	 * @since 1.0.0
+     * @since       1.0.0
+     * @access      public
+     * @return      void
 	 */
     public function render_page() {
-
 		include( 'view.html' );
-
 	}
 
 	/**
 	 * Compile SCSS.
 	 *
-	 * @since 1.0.0
+     * @since       1.0.0
+     * @access      public
+     * @return      void
 	 */
     public function style() {
 
@@ -214,50 +199,34 @@ class CoraFramework {
 	/**
 	 * Enqueue styles.
 	 *
-	 * @since 1.0.0
+     * @since       1.0.0
+     * @access      public
+     * @return      void
 	 */
     public function styles() {
 
-		# Vue
-		wp_enqueue_style( 'material-icons', $this->url."/assets/vendor/material-icons/material-icons.css" );
-		# select2
-		wp_enqueue_style( 'select2', $this->url."/assets/vendor/select2/select2.min.css");
-		# pickr
-		wp_enqueue_style( 'pickr', $this->url."/assets/vendor/pickr/nano.min.css");
-		# Wordpress color picker
-		wp_enqueue_style( 'wp-color-picker' ); 
+		# Material icons
+		wp_enqueue_style( 
+            'material-icons',
+            $this->url."/assets/vendor/material-icons/material-icons.css"
+        );
 
 	}
 
 	/**
 	 * Enqueue scripts.
 	 *
-	 * @since 1.0.0
+     * @since       1.0.0
+     * @access      public
+     * @return      void
 	 */
     public function scripts() {
 
 		# Vue
-		wp_enqueue_script( 'vue', $this->url."/assets/vendor/vue/vue.js" );
-		# select2
-		wp_enqueue_script( 'select2', $this->url."/assets/vendor/select2/select2.min.js" , array('jquery'));
-		# slicksort
-		wp_enqueue_script( 'vue-slicksort', $this->url."/assets/vendor/slicksort/vue-slicksort.min.js" , array('vue'));
-		# pickr
-		wp_enqueue_script( 'pickr', $this->url."/assets/vendor/pickr/pickr.min.js" , array('vue'));
-		# Media
-		wp_enqueue_media();
-
-		# Custom Components
-		foreach( glob($this->dir . 'assets/js/components/*.js')  as $file ) {
-			$name = basename($file, '.js');
-			$required = array('vue' , 'wp-color-picker', 'wp-color-picker', 'select2', 'vue-slicksort', 'pickr');
-
-			wp_enqueue_script(
-				$name,
-				$this->url .'assets/js/components/'.$name . '.js',
-				$required
-			);
-		}
+		wp_enqueue_script( 
+            'vue',
+            $this->url."/assets/vendor/vue/vue.js"
+        );
 		
 		# App
 		wp_enqueue_script(
@@ -272,7 +241,9 @@ class CoraFramework {
 	/**
 	 * Localize data to be handeld by vue
 	 *
-	 * @since 1.0.0
+     * @since       1.0.0
+     * @access      public
+     * @return      void
 	 */
     public function app_data () {
     
@@ -289,9 +260,11 @@ class CoraFramework {
 	}
 
 	/**
-	 * API : Add section
+	 * API: Add section
 	 *
-	 * @since 1.0.0
+     * @since       1.0.0
+     * @access      public
+     * @return      void
 	 */
     public function add_section( $section ) {
 		
@@ -303,9 +276,11 @@ class CoraFramework {
 	}
 
 	/**
-	 * API : Add field
+	 * API: Add field
 	 *
-	 * @since 1.0.0
+     * @since       1.0.0
+     * @access      public
+     * @return      void
 	 */
     public function add_field( $field ) {
 		
