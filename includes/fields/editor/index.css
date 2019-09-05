@@ -1,0 +1,18 @@
+.mce-top-part::before {
+    box-shadow: none !important;
+}
+.mce-tinymce{
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.mce-btn-group:not(:first-child){
+    border: none !important;
+}
+
+/* 
+ * Inside repeater field
+*/
+.cf-repeater-field .cf-editor-field {
+    border: 1px solid #eeeeee;
+}

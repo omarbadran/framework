@@ -1,4 +1,4 @@
-var CoraFramework = new  Vue({
+var CoraFramework = {
 
     /**
      * DOM element to mount on
@@ -76,4 +76,8 @@ var CoraFramework = new  Vue({
 
     }
     
+};
+
+jQuery(document).ready(function($) {
+    CoraFramework = new Vue(CoraFramework);
 });

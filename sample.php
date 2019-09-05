@@ -115,6 +115,12 @@ $coraSample->add_field( array(
             'title'     =>  'Icon',
             'condition' => array( 'text', '===' , 'semsem'),
         ),
+        array( 
+            'id'        =>  'editor',
+            'section'   =>  'general',
+            'type'      =>  'editor',
+            'title'     =>  'editor',
+        )
     ),
     'default'   => array(
         array(
@@ -125,6 +131,14 @@ $coraSample->add_field( array(
         'text'  => 'New Item',
         'select' => 'sam'
     )
+));
+
+$coraSample->add_field( array( 
+    'id'        =>  'editor',
+    'section'   =>  'general',
+    'type'      =>  'editor',
+    'title'     =>  'editor',
+    'default'   =>  'esfedfwe dddd'
 ));
 
 // echo '<pre>';

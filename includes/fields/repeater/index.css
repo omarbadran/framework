@@ -59,6 +59,10 @@
     width: 100%;
     box-sizing: border-box;
 }
+.cf-repeater-item-field-controls{
+    float: left;
+    width: 100%;
+}
 .cf-repeater-item .cf-repeater-item-fields .cf-repeater-item-field {
     padding: 10px 0px;
     float: left;

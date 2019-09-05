@@ -22,7 +22,7 @@
 
 			<div v-for="field in fields" v-show="showField(field)" class="cf-field">
 				<span class="cf-field-title"> {{ field.title }} </span>
-				<div :class="'cf-' + field.type + '-field'">
+				<div :class="'cf-' + field.type + '-field'" class="cf-item-field-controls">
 					<component
 						:is="field.type + '-field'"
 						v-model="values[field.section][field.id]"

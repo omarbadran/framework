@@ -51,7 +51,7 @@ Vue.component('repeater-field', {
                     <div v-show="activeItem === item" class="cf-repeater-item-fields">
                         <div v-for="field in fields" v-if="showField(field, itemIndex)" class="cf-repeater-item-field">
                             <span class="cf-repeater-item-title"> {{ field.title }} </span>
-                            <div :class="'cf-' + field.type + '-field'">
+                            <div :class="'cf-' + field.type + '-field'" class="cf-repeater-item-field-controls">
                                 <component 
                                     :is="field.type + '-field'"
                                     v-model="values[itemIndex][field.id]"
