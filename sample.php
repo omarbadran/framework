@@ -143,6 +143,13 @@ $coraSample->add_field( array(
     'default'   =>  'esfedfwe dddd'
 ));
 
+$coraSample->add_field( array( 
+    'id'        =>  'export',
+    'section'   =>  'toolbar',
+    'type'      =>  'export',
+    'title'     =>  'export',
+    'filename'  => 'Cora_Settings_Backup'
+));
 // echo '<pre>';
 // var_dump( $coraSample );
 // echo '</pre>';

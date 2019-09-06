@@ -3,7 +3,7 @@
     border-radius: 5px;
     border: 0;
     box-shadow: none;
-    background: rgba(62, 80, 134, 0.1);
+    background:rgba(18, 31, 70, 0.1);
     color: #666;
     transition: background 0.3s;
     width: 180px;
@@ -13,7 +13,7 @@
 .cf-text-field input:hover,
 .cf-text-field input:active,
 .cf-text-field input:focus{
-    background: rgba(62, 80, 134, 0.15);
+    background: rgba(18, 31, 70, 0.15);
 }
 
 .cf-text-field input:active,

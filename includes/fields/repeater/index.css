@@ -36,6 +36,11 @@
     color: #808082;
     top: -1px;
     position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 200px;
+    float: left;
+    overflow: hidden;
 }
 .cf-repeater-item .cf-repeater-item-head .cf-drag-handle {
     float: left;

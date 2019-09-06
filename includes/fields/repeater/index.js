@@ -36,7 +36,7 @@ Vue.component('repeater-field', {
 
     template: `
         <div>
-            <SlickList v-if="values.length" v-model="values" :useDragHandle="true" class="cf-repeater-items">
+            <SlickList v-if="values.length" v-model="values" lockAxis="y" :useDragHandle="true" class="cf-repeater-items">
                 <SlickItem v-for="(item, itemIndex) in values" :index="itemIndex" :key="itemIndex" class="cf-repeater-item">
                     
                     <div class="cf-repeater-item-head"  @click="activeItem === item ? activeItem = false : activeItem = item">

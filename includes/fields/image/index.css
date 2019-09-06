@@ -3,7 +3,7 @@
     border-radius: 3px;
     border: 0;
     box-shadow: none;
-    background: rgba(62, 80, 134, 0.1);
+    background:rgba(26, 44, 99, 0.1);
     color: #666;
     transition: background 0.3s;
     width: 180px;
@@ -12,7 +12,7 @@
     margin-right: 10px;
 }
 .cf-image-field input:hover, .cf-image-field input:active, .cf-image-field input:focus {
-    background: rgba(62, 80, 134, 0.15);
+    background: rgba(18, 31, 70, 0.15);
 }
 .cf-image-field input:active, .cf-image-field input:focus {
     border: 0;
