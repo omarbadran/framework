@@ -18,6 +18,9 @@ var CoraFramework = {
         values: CoraFrameworkData.values,
         translation: CoraFrameworkData.translation,
         activeSection: CoraFrameworkData.sections[0]['id'],
+        initialized: false,
+        loading: false,
+        alert: false,
     },
 
     /**
@@ -51,6 +54,56 @@ var CoraFramework = {
             return res;
         },
 
+        /**
+         * Show Alert.
+         * 
+         * @since 1.0.0
+         */
+        showAlert: function (style, message) {
+            const vm = this;
+
+            vm.alert = {};
+            vm.alert.style = style;
+            vm.alert.message = message;
+            
+            setTimeout(() => {
+                //vm.alert = false;
+            }, 3000);
+        },
+
+        /**
+         * Save Data.
+         * 
+         * @since 1.0.0
+         */
+        save: function (data) {
+            const vm = this;
+            
+            this.loading = true;
+
+            var postData = {
+                action: 'cora_save',
+                security: this.nonce,
+                data: this.values
+            }
+
+            // Ajax save
+            $.ajax({
+                type: "POST",
+                data: postData,
+                dataType:"json",
+                url: ajaxurl,
+                success: function () {
+                    vm.loading = false;
+                    vm.showAlert('success', 'Data Saved.')
+                }
+            }).fail(function (data) {
+                vm.loading = false;
+                vm.showAlert('warning', 'An error occurred, please reload the page.')
+        }); 
+
+        }
+
     },
     
     /**
@@ -74,8 +127,15 @@ var CoraFramework = {
             return section.title;
         }
 
+    },
+
+    /**
+     * Mounted
+     * 
+     */
+    mounted: function() {
+        this.initialized = true;
     }
-    
 };
 
 jQuery(document).ready(function($) {

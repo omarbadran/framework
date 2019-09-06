@@ -8,11 +8,9 @@
     padding: 5px 5px !important;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1) !important;
 
-    .select2-search{
-        input{
-            padding: 3px !important;
-        }        
-    }
+}
+.select2-search input{
+    padding: 3px !important;
 }
 
 .select2-selection__rendered {
@@ -23,4 +21,8 @@
 }
 .select2-selection__arrow {
     height: 34px !important;
+}
+
+.cf-repeater-field .select2{
+    width: 100% !important;
 }

@@ -120,10 +120,19 @@ class CoraFramework {
 		# Define paths
         $this->dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
         $this->url = site_url( str_replace( str_replace( '\\', '/', ABSPATH ), '', $this->dir ) );
-		
-		# Configuration
-		$this->config = $config;
-		
+        
+        
+        # Configuration
+		$this->config = wp_parse_args( $config, array(
+			'page_title' => 'example',
+			'menu_title' => 'example',
+			'capability' => 'manage_options',
+			'menu_icon' => '',
+			'menu_position' => 99,
+			'render_page' => array( $this, 'render_page' )
+        ));
+        
+
 		# Add admin page
 		add_action( 'admin_menu', array( $this  , "add_admin_page" ) );
 		# Compile SCSS
@@ -134,12 +143,15 @@ class CoraFramework {
 		add_action( 'admin_enqueue_scripts', array( $this  , "scripts" ) );
 		# Localize data to be handeld by vue
 		add_action( 'admin_enqueue_scripts', array( $this  , "app_data") );
-		
-		# Autoload Fields
+        # Localize data to be handeld by vue
+		add_action( 'wp_ajax_cora_save', array( $this  , "save") );
+
+
+        # Autoload Fields
 		foreach( glob($this->dir . 'includes/fields/*')  as $folder ) {
 			require_once $folder. '/index.php';
-		}
-
+        }
+        
 	}
 
 	/**
@@ -150,16 +162,7 @@ class CoraFramework {
      * @return      void
 	 */
     public function add_admin_page() {
-
-		# Parse & extract default args
-		extract( wp_parse_args( $this->config, array(
-			'page_title' => 'example',
-			'menu_title' => 'example',
-			'capability' => 'manage_options',
-			'menu_icon' => '',
-			'menu_position' => 99,
-			'render_page' => array( $this, 'render_page' )
-		)));
+        extract($this->config);
 
 		# Add Menu page
         add_menu_page( $page_title, $menu_title, $capability, $id, $render_page, $menu_icon, $menu_position );
@@ -245,7 +248,7 @@ class CoraFramework {
      * @access      public
      * @return      void
 	 */
-    public function app_data () {
+    public function app_data() {
     
         wp_localize_script( 'cora-framework', 'CoraFrameworkData', array(
 			'nonce' => wp_create_nonce('cora-framework-nonce'),
@@ -294,6 +297,31 @@ class CoraFramework {
 
 	}
 
+	/**
+	 * Ajax Save.
+	 *
+     * @since       1.0.0
+     * @access      public
+     * @return      void
+	 */
+    public function save() {
+        
+        # Check nonce
+        if ( ! check_ajax_referer( 'cora-framework-nonce', 'security') ){
+            wp_die();
+        }
+
+        # Check user capability
+        if ( ! current_user_can($this->config['capability']) ){
+            return false;
+        }
+
+        # Save the data
+        update_option( $this->config['id'], $_POST['data'] );
+
+        wp_die();
+    }
+    
 } # Class end
 
 

@@ -122,5 +122,4 @@ Vue.component('repeater-field', {
     directives: {
         handle: VueSlicksort.HandleDirective
     },
-
 });

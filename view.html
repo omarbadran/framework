@@ -1,4 +1,4 @@
-<div id="cf">
+<div id="cf" :class="{initialized: initialized}">
 
 	<div class="cf-header">
 		<h1>{{ config.page_title }}</h1>
@@ -6,8 +6,11 @@
 	</div>
 	
 	<div class="cf-body">
-	
-		<ul class="cf-nav">
+        <transition name="fade">
+    	    <div class="cf-loading" v-if="loading"></div>
+        </transition>
+
+        <ul class="cf-nav">
 			<li 
 				v-for="section in sections" 
 				@click="activeSection = section.id" 
@@ -30,9 +33,19 @@
 					</component>					
 				</div>
 			</div>
-		</div>
+        </div>
+        
+        <transition name="fade">
+            <div v-if="alert" class="cf-message" :class="alert.style">
+                <div>
+                    <span>{{alert.message}}</span>
+                    <i @click="alert = false" class="dashicons dashicons-no"></i>
+                </div>
+                
+            </div>
+        </transition>
 
-		<div class="cf-save">Save Changes</div>
+		<div class="cf-save" @click="save">Save Changes</div>
 	</div>
 
 </div>

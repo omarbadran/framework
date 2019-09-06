@@ -15,7 +15,7 @@
     border-radius: 5px;
     margin-bottom: 10px;
     border: 1px solid #c8ced9;
-    width: 250px;
+    width: 280px;
     max-width: 100%;
     overflow: hidden;
 }
@@ -33,15 +33,15 @@
 .cf-repeater-item .cf-repeater-item-head span {
     font-weight: bold;
     font-size: 14px;
-    color: #808086;
+    color: #808082;
     top: -1px;
     position: relative;
 }
 .cf-repeater-item .cf-repeater-item-head i.cf-drag-handle {
     line-height: inherit;
     float: left;
-    margin-right: 6px;
-    color: #cfd4de;
+    margin-right: 5px;
+    color: #ced0da;
     font-size: 20px;
     cursor: move;
 }
