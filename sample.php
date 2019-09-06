@@ -75,6 +75,8 @@ $coraSample->add_field( array(
     'type'      =>  'select',
     'title'     =>  'Select',
     'condition' => array( 'switch', '===' , true),
+    'multiple'  => true,
+    'default'   =>  array('elon', 'sam'),
     'options'   =>   array(
         array(
             'id'   =>  'sam',

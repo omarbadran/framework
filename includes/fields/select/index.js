@@ -5,8 +5,12 @@ Vue.component('select-field', {
     inheritAttrs: false,
     
     props: {
-        value: String,
+        value: [String, Array],
         options: Array,
+        multiple:{
+            type: Boolean,
+            default: false
+        }
     },
 
     template: `
@@ -18,26 +22,20 @@ Vue.component('select-field', {
                 
         jQuery(this.$el)
 			.select2({ 
-                data: this.options,
+                data: vm.options,
                 escapeMarkup: markup => markup,
-                width: 'element'
+                width: 'element',
+                multiple: vm.multiple
             })
-			.val(this.value)
+			.val(vm.value)
 			.trigger('change')
 			.on('change', function () {
-				vm.$emit('input', this.value)
+				vm.$emit('input', jQuery(this).val())
 			})
     },
 
     watch: {
-		value: function (value) {
-			// update value
-			jQuery(this.$el)
-				.val(value)
-				.trigger('change')
-		},
 		options: function (options) {
-			// update options
 			jQuery(this.$el).empty().select2({ data: options })
 		}
     },
