@@ -17,9 +17,16 @@ Vue.component('switch-field' , {
         </div>
     `,
 
+    created: function(){
+        // Wordpress saves the Boolean value as a string :(
+        if(typeof this.value === 'string'){
+            this.$emit('input', JSON.parse(this.value))
+        }
+    },
+
     methods: {
         change(){                        
-            this.$emit('input', !JSON.parse(this.value))
+            this.$emit('input', !this.value)
         }
     }
 });

@@ -150,6 +150,14 @@ $coraSample->add_field( array(
     'title'     =>  'export',
     'filename'  => 'Cora_Settings_Backup'
 ));
+
+$coraSample->add_field( array( 
+    'id'        =>  'import',
+    'section'   =>  'toolbar',
+    'type'      =>  'import',
+    'title'     =>  'import',
+));
+
 // echo '<pre>';
 // var_dump( $coraSample );
 // echo '</pre>';

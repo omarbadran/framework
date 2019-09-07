@@ -242,7 +242,7 @@ class CoraFramework {
 	}
 
 	/**
-	 * Localize data to be handeld by vue
+	 * Localize data to be handeld by vue.
 	 *
      * @since       1.0.0
      * @access      public
@@ -255,7 +255,7 @@ class CoraFramework {
 			'config' => $this->config,
 			'sections' => $this->sections,
 			'fields' => $this->fields,
-			'values' => $this->values,
+			'values' => $this->getValues(),
 			'translation' => $this->translation,
 			'url' => $this->url
 		));
@@ -320,6 +320,32 @@ class CoraFramework {
         update_option( $this->config['id'], $_POST['data'] );
 
         wp_die();
+    }
+
+	/**
+	 * API: Get settings values.
+	 *
+     * @since       1.0.0
+     * @access      public
+     * @return      array
+	 */
+    public function getValues() {
+        $values = get_option($this->config['id']);
+        $sections = array();
+
+        if($values) {
+
+            foreach ($this->sections as $section) {
+                $sections[ $section['id']] = array();
+            }
+    
+            $values = wp_parse_args($values , $sections);    
+
+            return $values;
+        }
+
+        # Option is not in the database, get default values.
+        return $this->values;
     }
     
 } # Class end
