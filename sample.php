@@ -40,8 +40,6 @@ $coraSample->add_field( array(
     'section'   =>  'general',
     'type'      =>  'text',
     'title'     =>  'Text',
-    'default'   =>  'Hello world',
-    'placeholder' => 'Type here ...'
 ));
 
 $coraSample->add_field( array( 
@@ -49,7 +47,6 @@ $coraSample->add_field( array(
     'section'   =>  'general',
     'type'      =>  'color',
     'title'     =>  'Color',
-    'default'   =>  '#2026cc',
     'condition' => array( 'select', '===' , 'elon')
 ));
 
@@ -58,7 +55,6 @@ $coraSample->add_field( array(
     'section'   =>  'general',
     'type'      =>  'textarea',
     'title'     =>  'Textarea',
-    'default'   =>  'Hello world',
     'placeholder' => 'Type here ...'
 ));
 
@@ -76,7 +72,6 @@ $coraSample->add_field( array(
     'title'     =>  'Select',
     'condition' => array( 'switch', '===' , true),
     'multiple'  => true,
-    'default'   =>  array('elon', 'sam'),
     'options'   =>   array(
         array(
             'id'   =>  'sam',
@@ -94,7 +89,6 @@ $coraSample->add_field( array(
     'section'   =>  'general',
     'type'      =>  'icon',
     'title'     =>  'Icon',
-    'default'   =>  'book'
 ));
 
 $coraSample->add_field( array( 
@@ -124,11 +118,6 @@ $coraSample->add_field( array(
             'title'     =>  'editor',
         )
     ),
-    'default'   => array(
-        array(
-            'text'  => 'Dashboard',
-        )
-    ),
     'new_item_default'   => array(
         'text'  => 'New Item',
         'select' => 'sam'
@@ -140,7 +129,6 @@ $coraSample->add_field( array(
     'section'   =>  'general',
     'type'      =>  'editor',
     'title'     =>  'editor',
-    'default'   =>  'esfedfwe dddd'
 ));
 
 $coraSample->add_field( array( 
@@ -148,7 +136,6 @@ $coraSample->add_field( array(
     'section'   =>  'toolbar',
     'type'      =>  'export',
     'title'     =>  'export',
-    'filename'  => 'Cora_Settings_Backup'
 ));
 
 $coraSample->add_field( array( 

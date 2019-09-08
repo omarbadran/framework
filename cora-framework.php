@@ -161,7 +161,7 @@ class CoraFramework {
             }
 
         }
-        
+
 	}
 
 	/**
@@ -265,7 +265,7 @@ class CoraFramework {
 			'config' => $this->config,
 			'sections' => $this->sections,
 			'fields' => $this->fields,
-			'values' => $this->getValues(),
+			'values' => json_decode(json_encode( $this->getValues(), JSON_FORCE_OBJECT)),
 			'translation' => $this->translation,
 			'url' => $this->url
 		));
