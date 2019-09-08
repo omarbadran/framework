@@ -24,7 +24,9 @@ Vue.component('repeater-field', {
                     return this.fields[0]['id'];
                 }
             }
-        }
+        },
+        translation: Object
+
     },
     
     data: function() {
@@ -58,18 +60,20 @@ Vue.component('repeater-field', {
                             <div :class="'cf-' + field.type + '-field'" class="cf-repeater-item-field-controls">
                                 <component 
                                     :is="field.type + '-field'"
+                                    :translation="translation"
                                     v-model="values[itemIndex][field.id]"
                                     v-bind="field">
                                 </component>					
                             </div>
                         </div>
-                        <div class="cf-repeater-remove-item" @click="removeItem(itemIndex)">Remove</div>
+                        
+                        <div class="cf-repeater-remove-item" @click="removeItem(itemIndex)">{{translation.remove}}</div>
                     </div>
 
                 </SlickItem>
             </SlickList>
             
-            <div class="button" @click="values.push({...new_item_default})">Add Item</div>
+            <div class="button" @click="values.push({...new_item_default})">{{translation.add_item}}</div>
         </div>
     `,
 
@@ -86,7 +90,7 @@ Vue.component('repeater-field', {
         },
         
         removeItem: function (index) {
-            if( confirm('Are You Sure?') ){
+            if( confirm(this.translation.confirm) ){
                 Vue.delete(this.values, index);
             }
         },

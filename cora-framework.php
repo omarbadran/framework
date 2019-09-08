@@ -117,6 +117,8 @@ class CoraFramework {
 	 */
 	public function __construct( $config ) {
 
+        global $pagenow;
+
 		# Define paths
         $this->dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
         $this->url = site_url( str_replace( str_replace( '\\', '/', ABSPATH ), '', $this->dir ) );
@@ -132,24 +134,32 @@ class CoraFramework {
 			'render_page' => array( $this, 'render_page' )
         ));
         
+        # Translation
+        $this->translation = include $this->dir . 'translation.php';
 
 		# Add admin page
 		add_action( 'admin_menu', array( $this  , "add_admin_page" ) );
-		# Compile SCSS
-		add_action( 'admin_head', array( $this  , "style" ) );
-		# Enqueue styles
-		add_action( 'admin_enqueue_scripts', array( $this  , "styles" ) );
-		# Enqueue scripts
-		add_action( 'admin_enqueue_scripts', array( $this  , "scripts" ) );
-		# Localize data to be handeld by vue
-		add_action( 'admin_enqueue_scripts', array( $this  , "app_data") );
-        # Localize data to be handeld by vue
+        # Ajax save
 		add_action( 'wp_ajax_cora_save', array( $this  , "save") );
 
 
-        # Autoload Fields
-		foreach( glob($this->dir . 'includes/fields/*')  as $folder ) {
-			require_once $folder. '/index.php';
+        # Load assets only in settings page
+        if ( $pagenow === 'admin.php' && isset($_GET['page']) && $_GET['page'] === $this->config['id']) {
+
+            # Compile SCSS
+            add_action( 'admin_head', array( $this  , "style" ) );
+            # Enqueue styles
+            add_action( 'admin_enqueue_scripts', array( $this  , "styles" ) );
+            # Enqueue scripts
+            add_action( 'admin_enqueue_scripts', array( $this  , "scripts" ) );
+            # Localize data to be handeld by vue
+            add_action( 'admin_enqueue_scripts', array( $this  , "app_data") );
+
+            # Autoload Fields
+            foreach( glob($this->dir . 'includes/fields/*')  as $folder ) {
+                require_once $folder. '/index.php';
+            }
+
         }
         
 	}

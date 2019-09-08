@@ -27,7 +27,8 @@
 				<span class="cf-field-title"> {{ field.title }} </span>
 				<div :class="'cf-' + field.type + '-field'" class="cf-item-field-controls">
 					<component
-						:is="field.type + '-field'"
+                        :is="field.type + '-field'"
+                        :translation="translation"
 						v-model="values[field.section][field.id]"
 						v-bind="field">
 					</component>					
@@ -45,7 +46,7 @@
             </div>
         </transition>
 
-		<div class="cf-save" @click="save">Save Changes</div>
+		<div class="cf-save" @click="save">{{ translation.save_changes }}</div>
 	</div>
 
 </div>

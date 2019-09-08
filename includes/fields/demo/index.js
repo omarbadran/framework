@@ -6,6 +6,7 @@ Vue.component('demo-field', {
 
     props: {
         options: Array,
+        translation: Object
     },
 
     template: `
@@ -14,7 +15,7 @@ Vue.component('demo-field', {
                 <img :src="option.img" :title="option.title"/>
                 <div class="cf-demo-bottom">
                     <span>{{option.title}}</span>
-                    <div class="button button-primary" @click="importDemo(option.data)">Import</div>
+                    <div class="button button-primary" @click="importDemo(option.data)">{{translation.import}}</div>
                 </div>
             </div>
         </div>
@@ -22,8 +23,9 @@ Vue.component('demo-field', {
 
     methods: {
         importDemo: function (data){            
-            if (confirm('Are You Sure?')) {
+            if (confirm(this.translation.confirm)) {
                 let newData = jQuery.extend(true, CoraFramework.values, data);
+                console.log(newData);
                 CoraFramework.values = newData;
                 CoraFramework.save();
             }

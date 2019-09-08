@@ -9,12 +9,19 @@ Vue.component('export-field', {
         append_date: {
             type: Boolean,
             default: true
+        },
+        translation: Object
+    },
+        
+    data: function(){
+        return {
+            data: false,
         }
     },
-    
+
     template: `
         <div>
-            <div class="button" @click="download">Download Data</div>
+            <div class="button" @click="download">{{translation.download_data}}</div>
         </div>
     `,
 

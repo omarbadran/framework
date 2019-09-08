@@ -6,11 +6,11 @@
 }
 .cf-demo{
     float: left;
-    width: 47%;
+    width: calc(47% - 2px);
     margin: 1.5%;
-    background: #fff;
-    border-radius: 5px;
+    background: #ececec;
     overflow: hidden;
+    border: 1px solid #bcc1ca;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }
 .cf-demo img{

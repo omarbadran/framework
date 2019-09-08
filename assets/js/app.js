@@ -95,11 +95,11 @@ var CoraFramework = {
                 url: ajaxurl,
                 success: function () {
                     vm.loading = false;
-                    vm.showAlert('success', 'Data Saved.')
+                    vm.showAlert('success', vm.translation.data_saved)
                 }
             }).fail(function (data) {
                 vm.loading = false;
-                vm.showAlert('warning', 'An error occurred, please reload the page.')
+                vm.showAlert('warning', vm.translation.error)
         }); 
 
         }

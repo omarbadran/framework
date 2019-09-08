@@ -9,7 +9,8 @@ Vue.component('import-field', {
         append_date: {
             type: Boolean,
             default: true
-        }
+        },
+        translation: Object
     },
     
     data: function(){
@@ -21,7 +22,7 @@ Vue.component('import-field', {
     template: `
         <div>
             <input @change="change" type="file" accept="application/json" />
-            <div class="button" @click="importData">Import</div>
+            <div class="button" @click="importData">{{translation.import}}</div>
         </div>
     `,
 
@@ -31,7 +32,8 @@ Vue.component('import-field', {
             try {
                 let files = evt.target.files;
                 if (!files.length) {
-                    alert('No file selected!');
+                    alert(CoraFramework.translation.no_file_selected);
+                    vm.data = false;
                     return;
                 }
                 let file = files[0];
@@ -49,11 +51,11 @@ Vue.component('import-field', {
             const vm = this;
 
             if(!vm.data){
-                alert('No file selected!');
+                alert(CoraFramework.translation.no_file_selected);
                 return;
             }
 
-            if(confirm('Are You Sure?')){
+            if(confirm(CoraFramework.translation.confirm)){
                 CoraFramework.values = vm.data;
                 CoraFramework.save();
             }
