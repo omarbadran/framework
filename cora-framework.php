@@ -5,9 +5,9 @@
  * @wordpress-plugin
  * Plugin Name:       Cora Framework
  * Plugin URI:        http://coradashboard.com
- * Description:       Simple Wordpress Options Framework.
+ * Description:       Simple & Extendable Wordpress Options Framework.
  * Version:           1.0.0
- * Author:            Cora
+ * Author:            Omar Badran
  * Author URI:        http://coradashboard.com/
 */
 
