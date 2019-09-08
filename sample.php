@@ -158,6 +158,33 @@ $coraSample->add_field( array(
     'title'     =>  'import',
 ));
 
+$coraSample->add_field( array( 
+    'id'        =>  'demo',
+    'section'   =>  'toolbar',
+    'type'      =>  'demo',
+    'title'     =>  'demo',
+    'options'   => array(
+        array(
+            'title' => 'demo 1',
+            'img'   => 'http://localhost/wp-content/themes/twentynineteen/screenshot.png',
+            'data'  => array(
+                'general'   =>  array(
+                    'text'  =>  'Hello demo one :)'
+                )
+            )
+        ),
+        array(
+            'title' => 'demo 2',
+            'img'   => 'http://localhost/wp-content/themes/twentysixteen/screenshot.png',
+            'data'  => array(
+                'general'   =>  array(
+                    'text'  =>  'Hello demo two :)'
+                )
+            )
+        ),
+    )
+));
+
 // echo '<pre>';
 // var_dump( $coraSample );
 // echo '</pre>';
