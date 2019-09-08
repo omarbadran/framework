@@ -15,7 +15,7 @@ Vue.component('repeater-field', {
         },
         new_item_default: {
             type: Object,
-            default: () => []
+            default: () => {}
         },
         item_title: {
             type: String,

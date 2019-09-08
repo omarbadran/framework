@@ -39,7 +39,6 @@ $coraSample->add_field( array(
     'id'        =>  'text',
     'section'   =>  'general',
     'type'      =>  'text',
-    'title'     =>  'Text',
 ));
 
 $coraSample->add_field( array( 
@@ -118,10 +117,6 @@ $coraSample->add_field( array(
             'title'     =>  'editor',
         )
     ),
-    'new_item_default'   => array(
-        'text'  => 'New Item',
-        'select' => 'sam'
-    )
 ));
 
 $coraSample->add_field( array( 
