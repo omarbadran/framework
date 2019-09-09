@@ -15,7 +15,7 @@ Vue.component('editor-field', {
     data() {
         return {
             id: 'x' + Math.random().toString(36).substr(2, 9),
-            content : '',
+            content : this.value,
             editor : null,
         }
     },

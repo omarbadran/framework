@@ -120,6 +120,10 @@
     transition: all 0.3s;
     margin-top: 15px;
     margin-bottom: 5px;
+    border: 0;
+}
+.cf-repeater-remove-item:disabled{
+    cursor: not-allowed;
 }
 .cf-repeater-remove-item:hover {
     background: #f7c0c0;
