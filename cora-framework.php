@@ -1,23 +1,20 @@
 <?php
 /**
- * The plugin bootstrap file
+ * Cora Framework
  *
- * @wordpress-plugin
- * Plugin Name:       Cora Framework
- * Plugin URI:        http://coradashboard.com
- * Description:       Simple & Extendable Wordpress Options Framework.
- * Version:           1.0.0
- * Author:            Omar Badran
- * Author URI:        http://coradashboard.com/
-*/
+ * Long Description
+ *
+ * @package      CoraDashboard
+ * @subpackage   CoraFramework
+ * @author       Omar Badran
+ */
 
-if ( ! defined( 'WPINC' ) )  die;
+# Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
 
 
-# Require vendors
+# Vendors
 require "vendor/scssphp/scss.inc.php";
-
-# Use Vendors
 use ScssPhp\ScssPhp\Compiler as SCSSCompiler;
 
 
