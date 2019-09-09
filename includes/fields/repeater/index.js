@@ -9,14 +9,17 @@ Vue.component('repeater-field', {
             type: Array,
             default: () => []
         },
+        
         fields: {
             type: Array,
             default: () => []
         },
+
         new_item_default: {
             type: Object,
             default: () => {}
         },
+
         item_title: {
             type: String,
             default:  function () {
@@ -25,8 +28,13 @@ Vue.component('repeater-field', {
                 }
             }
         },
-        translation: Object
 
+        remove_condition: {
+            default: false
+        },
+
+        translation: Object
+        
     },
     
     data: function() {
@@ -67,7 +75,7 @@ Vue.component('repeater-field', {
                             </div>
                         </div>
                         
-                        <div class="cf-repeater-remove-item" @click="removeItem(itemIndex)">{{translation.remove}}</div>
+                        <div class="cf-repeater-remove-item" v-if="showRemove(itemIndex)" @click="removeItem(itemIndex)">{{translation.remove}}</div>
                     </div>
 
                 </SlickItem>
@@ -95,11 +103,7 @@ Vue.component('repeater-field', {
             }
         },
 
-        /**
-         * Decide to show or hide a field
-         * 
-         * @since 1.0.0
-         */
+
         showField: function (field, itemIndex) {
             const vm = this;
             let res = true;
@@ -109,6 +113,23 @@ Vue.component('repeater-field', {
                 target = vm.values[itemIndex][field.condition[0]];
                 
                 res = eval(`compareValue ${field.condition[1]} target`);
+            }
+
+            return res;
+        },
+
+
+        showRemove: function (itemIndex) {
+            const vm = this;
+            let condition = vm.remove_condition;
+            
+            let res = true;
+
+            if (condition) {
+                compareValue = condition[2];
+                target = vm.values[itemIndex][condition[0]];
+                
+                res = eval(`compareValue ${condition[1]} target`);
             }
 
             return res;

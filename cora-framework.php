@@ -135,7 +135,7 @@ if ( ! class_exists('CoraFramework') ) {
             $this->translation = include $this->dir . 'translation.php';
 
             # Add admin page
-            add_action( 'admin_menu', array( $this  , "add_admin_page" ) );
+            add_action( '_admin_menu', array( $this  , "add_admin_page" ));
             # Ajax save
             add_action( 'wp_ajax_cora_save', array( $this  , "save") );
 
