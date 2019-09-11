@@ -40,6 +40,9 @@ Vue.component('editor-field', {
             let options = {
                 selector: '#' + this.id,
                 menubar: false,
+                plugins: wp.editor.getDefaultSettings().tinymce.plugins,
+                toolbar1: "formatselect,alignleft,aligncenter,alignright,alignjustify,bold,italic,bullist,numlist,image,link,fullscreen",
+                wpeditimage_html5_captions: true,
                 branding: false,
                 init_instance_callback : this.initEditor
             };

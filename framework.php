@@ -320,7 +320,7 @@ if ( ! class_exists('CoraFramework') ) {
 
             # Check user capability
             if ( ! current_user_can($this->config['capability']) ){
-                return false;
+                wp_die();
             }
 
             # Save the data

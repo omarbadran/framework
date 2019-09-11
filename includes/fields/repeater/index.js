@@ -79,7 +79,7 @@ Vue.component('repeater-field', {
                             </div>
                         </div>
                         
-                        <button class="cf-repeater-remove-item" :disabled="!showRemove(itemIndex)" :title="remove_disabled_title" @click="removeItem(itemIndex)">{{translation.remove}}</button>
+                        <button class="cf-repeater-remove-item" :disabled="!showRemove(itemIndex)" :title="!showRemove(itemIndex) ? remove_disabled_title : false" @click="removeItem(itemIndex)">{{translation.remove}}</button>
                     </div>
 
                 </SlickItem>
@@ -102,7 +102,7 @@ Vue.component('repeater-field', {
         },
         
         removeItem: function (index) {
-            if( confirm(this.translation.confirm) ){ //clicking more than once !!!!
+            if( confirm(this.translation.confirm) ){
                 Vue.delete(this.values, index);
             }
         },
