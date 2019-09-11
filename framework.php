@@ -262,7 +262,7 @@ if ( ! class_exists('CoraFramework') ) {
                 'config' => $this->config,
                 'sections' => $this->sections,
                 'fields' => $this->fields,
-                'values' => json_decode(json_encode( (object) $this->getValues())),
+                'values' => json_decode(json_encode( (object) $this->get_values())),
                 'translation' => $this->translation,
                 'url' => $this->url
             ));
@@ -336,25 +336,43 @@ if ( ! class_exists('CoraFramework') ) {
          * @access      public
          * @return      array
          */
-        public function getValues() {
+        public function get_values() {
             $values = get_option($this->config['id']);
             $sections = array();
 
             if($values) {
 
                 foreach ($this->sections as $section) {
-                    $sections[ $section['id']] = array();
+                    $sections[ $section['id']] = (object) [];
                 }
         
                 $values = wp_parse_args($values , $sections);    
 
-                return $values;
+                return wp_unslash($values);
             }
 
             # Option is not in the database, get default values.
-            return $this->values;
+            return wp_unslash( (object) $this->values);
         }
         
+        /**
+         * API: Get field value.
+         *
+         * @since       1.0.0
+         * @access      public
+         * @return      array
+         */
+        public function get_value($sectionID, $fieldID, $default) {
+
+            $section = $this->get_values()[$sectionID];
+
+            if( isset($section[$fieldID]) ){
+                return $section[$fieldID];
+            }else{
+                return $default;
+            }
+        }
+
     } # Class end
 
 }

@@ -31,16 +31,15 @@
             text-transform: capitalize;
             font-weight: 700;
             font-size: 14px;
-            color: #babdc5;
+            color: #b3b6bf;
             cursor: pointer;
             transition: 0.3s;
             position: relative;
             border-radius: 5px;
 
             &.active{
-                color: #5a5e82;
+                color: #535567;
                 background: #c4c9d2;
-                padding: 9px 14px;
             }
 
             i{
@@ -93,8 +92,8 @@
 
         h2{
             text-transform: capitalize;
-            margin: 5px 0 30px 0;
-            font-size: 22px;
+            margin: 10px 0 35px 0;
+            font-size: 24px;
             color: #535567;
         }
 
