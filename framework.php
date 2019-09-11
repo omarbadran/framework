@@ -373,6 +373,22 @@ if ( ! class_exists('CoraFramework') ) {
             }
         }
 
+        /**
+         * API: Update field value.
+         *
+         * @since       1.0.0
+         * @access      public
+         * @return      void
+         */
+        public function update_value($sectionID, $fieldID, $value) {
+
+            $values = $this->get_values();
+            
+            $values[$sectionID][$fieldID] =$value;
+            
+            update_option( $this->config['id'], $values );
+        }
+
     } # Class end
 
 }
