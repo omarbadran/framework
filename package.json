@@ -7,7 +7,7 @@
     "start": "gulp"
   },
   "repository": {
-    "type": "git",
+    "type": "gulp scripts & gulp styles & gulp watch",
     "url": "git+https://github.com/omarbadran/cora-framework.git"
   },
   "author": "Omar Badran",
