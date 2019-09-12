@@ -2,7 +2,7 @@
 /**
  * Cora Framework
  *
- * Long Description
+ * Simple & Flexible WordPress options framework.
  *
  * @package      CoraDashboard
  * @subpackage   CoraFramework
@@ -11,11 +11,6 @@
 
 # Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
-
-
-# Vendors
-require "vendor/scssphp/scss.inc.php";
-use ScssPhp\ScssPhp\Compiler as SCSSCompiler;
 
 
 
@@ -143,8 +138,6 @@ if ( ! class_exists('CoraFramework') ) {
             # Load assets only in settings page
             if ( $pagenow === 'admin.php' && isset($_GET['page']) && $_GET['page'] === $this->config['id']) {
 
-                # Compile SCSS
-                add_action( 'admin_head', array( $this  , "style" ) );
                 # Enqueue styles
                 add_action( 'admin_enqueue_scripts', array( $this  , "styles" ) );
                 # Enqueue scripts
@@ -188,25 +181,6 @@ if ( ! class_exists('CoraFramework') ) {
         }
 
         /**
-         * Compile SCSS.
-         *
-         * @since       1.0.0
-         * @access      public
-         * @return      void
-         */
-        public function style() {
-
-            $compiler = new SCSSCompiler();
-            $compiler->setImportPaths( $this->dir . "assets/scss/" );
-            
-            $file = file_get_contents( $this->dir . "assets/scss/style.scss" );
-            $css = $compiler->compile( $file );	  
-            
-            echo "<style>$css</style>";
-        
-        }
-
-        /**
          * Enqueue styles.
          *
          * @since       1.0.0
@@ -221,6 +195,11 @@ if ( ! class_exists('CoraFramework') ) {
                 $this->url."/assets/vendor/material-icons/material-icons.css"
             );
 
+            # Main
+            wp_enqueue_style( 
+                'cora-framework',
+                $this->url."/assets/css/style.css"
+            );
         }
 
         /**
@@ -241,7 +220,7 @@ if ( ! class_exists('CoraFramework') ) {
             # App
             wp_enqueue_script(
                 'cora-framework',
-                $this->url."/assets/js/app.js",
+                $this->url."/assets/js/app.min.js",
                 array('vue'),
                 $this->version,
                 true
@@ -262,7 +241,7 @@ if ( ! class_exists('CoraFramework') ) {
                 'config' => $this->config,
                 'sections' => $this->sections,
                 'fields' => $this->fields,
-                'values' => json_decode(json_encode( (object) $this->get_values())),
+                'values' => $this->get_values(),
                 'translation' => $this->translation,
                 'url' => $this->url
             ));
@@ -281,7 +260,7 @@ if ( ! class_exists('CoraFramework') ) {
             $this->sections[] = $section;
             
             if ( !isset($this->values[ $section['id'] ]) ) {
-                $this->values[$section['id']] = array();
+                $this->values[$section['id']] = ['_empty' => null];
             }
         }
 
@@ -339,20 +318,19 @@ if ( ! class_exists('CoraFramework') ) {
         public function get_values() {
             $values = get_option($this->config['id']);
             $sections = array();
-
+        
             if($values) {
 
                 foreach ($this->sections as $section) {
-                    $sections[ $section['id']] = (object) [];
+                    $sections[ $section['id']] = ['_empty' => null];
                 }
-        
-                $values = wp_parse_args($values , $sections);    
-
-                return wp_unslash($values);
+                        
+                $values = wp_parse_args($values , $sections);
+                return wp_unslash( json_decode( json_encode($values), true) );
             }
 
             # Option is not in the database, get default values.
-            return wp_unslash( (object) $this->values);
+            return $this->values;
         }
         
         /**
