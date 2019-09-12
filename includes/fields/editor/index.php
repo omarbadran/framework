@@ -23,7 +23,7 @@ class cora_editor_field {
         $this->url = site_url( str_replace( str_replace( '\\', '/', ABSPATH ), '', $this->dir ) );
 
         # Enqueue assets
-		add_action( 'admin_enqueue_scripts', array( $this  , "assets" ) );
+		add_action( 'admin_enqueue_scripts', [ $this  , "assets" ] );
     }
 
     /**

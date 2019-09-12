@@ -23,7 +23,7 @@ class cora_select_field {
         $this->url = site_url( str_replace( str_replace( '\\', '/', ABSPATH ), '', $this->dir ) );
 
         # Enqueue assets
-		add_action( 'admin_enqueue_scripts', array( $this  , "assets" ) );
+		add_action( 'admin_enqueue_scripts', [ $this  , "assets" ] );
     }
 
     /**
@@ -39,8 +39,8 @@ class cora_select_field {
 		wp_enqueue_script( 'cora-select-field', $this->url."/index.js" );
 
         # select2
-		wp_enqueue_script( 'select2', $this->url."/assets/select2/select2.min.js" , array('jquery'));
-		wp_enqueue_style( 'select2', $this->url."/assets/select2/select2.min.css");
+		wp_enqueue_script( 'select2', $this->url."/assets/select2/select2.min.js" , ['jquery'] );
+		wp_enqueue_style( 'select2', $this->url."/assets/select2/select2.min.css" );
 
     }
 }

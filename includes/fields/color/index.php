@@ -23,7 +23,7 @@ class cora_color_field {
 		$this->url = site_url( str_replace( str_replace( '\\', '/', ABSPATH ), '', $this->dir ) );
 		
         # Enqueue assets
-		add_action( 'admin_enqueue_scripts', array( $this  , "assets" ) );
+		add_action( 'admin_enqueue_scripts', [ $this  , "assets" ] );
     }
 
     /**
@@ -39,8 +39,8 @@ class cora_color_field {
 		wp_enqueue_script( 'cora-color-field', $this->url."/index.js" );
 
 		# pickr
-		wp_enqueue_script( 'pickr', $this->url."/assets/pickr/pickr.min.js" , array('vue'));
-		wp_enqueue_style( 'pickr', $this->url."/assets/pickr/nano.min.css");
+		wp_enqueue_script( 'pickr', $this->url."/assets/pickr/pickr.min.js" , ['vue'] );
+		wp_enqueue_style( 'pickr', $this->url."/assets/pickr/nano.min.css" );
 		
     }
 }

@@ -70,7 +70,7 @@ if ( ! class_exists('CoraFramework') ) {
          *
          * @var array
          */
-        private $sections = array();
+        private $sections = [];
 
         /**
          * Registered fields.
@@ -79,7 +79,7 @@ if ( ! class_exists('CoraFramework') ) {
          *
          * @var array
          */
-        private $fields = array();
+        private $fields = [];
         
         /**
          * Fields values.
@@ -88,7 +88,7 @@ if ( ! class_exists('CoraFramework') ) {
          *
          * @var string
          */
-        private $values = array();
+        private $values = [];
 
         /**
          * Translated strings.
@@ -97,7 +97,7 @@ if ( ! class_exists('CoraFramework') ) {
          *
          * @var string
          */
-        private $translation = array();
+        private $translation = [];
 
 
         /**
@@ -109,48 +109,45 @@ if ( ! class_exists('CoraFramework') ) {
          */
         public function __construct( $config ) {
 
-            global $pagenow;
-
             # Define paths
             $this->dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
             $this->url = site_url( str_replace( str_replace( '\\', '/', ABSPATH ), '', $this->dir ) );
             
             
-            # Configuration
-            $this->config = wp_parse_args( $config, array(
+            # Instance Configuration
+            $this->config = wp_parse_args( $config, [
                 'page_title' => 'example',
                 'menu_title' => 'example',
                 'capability' => 'manage_options',
                 'menu_icon' => '',
                 'menu_position' => 99,
-                'render_page' => array( $this, 'render_page' )
-            ));
+                'render_page' => [ $this, 'render_page' ]
+            ]);
             
             # Translation
             $this->translation = include $this->dir . 'translation.php';
 
-            # Add admin page
-            add_action( '_admin_menu', array( $this  , "add_admin_page" ));
-            # Ajax save
-            add_action( 'wp_ajax_cora_save', array( $this  , "save") );
-
-
-            # Load assets only in settings page
-            if ( $pagenow === 'admin.php' && isset($_GET['page']) && $_GET['page'] === $this->config['id']) {
+            # Currently in view
+            if ( $this->in_view() ) {
 
                 # Enqueue styles
-                add_action( 'admin_enqueue_scripts', array( $this  , "styles" ) );
+                add_action( 'admin_enqueue_scripts', [ $this  , "styles" ] );
                 # Enqueue scripts
-                add_action( 'admin_enqueue_scripts', array( $this  , "scripts" ) );
+                add_action( 'admin_enqueue_scripts', [ $this  , "scripts" ] );
                 # Localize data to be handeld by vue
-                add_action( 'admin_enqueue_scripts', array( $this  , "app_data") );
+                add_action( 'admin_enqueue_scripts', [ $this  , "app_data" ] );
 
                 # Autoload Fields
-                foreach( glob($this->dir . 'includes/fields/*')  as $folder ) {
-                    require_once $folder. '/index.php';
+                foreach( glob($this->dir . 'includes/fields/*')  as $field ) {
+                    require_once $field. '/index.php';
                 }
 
             }
+
+            # Add admin page
+            add_action( '_admin_menu', [ $this  , "add_admin_page" ] );
+            # Ajax save
+            add_action( 'wp_ajax_cora_save', [ $this  , "save" ] );
 
         }
 
@@ -162,6 +159,7 @@ if ( ! class_exists('CoraFramework') ) {
          * @return      void
          */
         public function add_admin_page() {
+
             extract($this->config);
 
             # Add Menu page
@@ -177,7 +175,28 @@ if ( ! class_exists('CoraFramework') ) {
          * @return      void
          */
         public function render_page() {
+
             include( 'view.html' );
+
+        }
+
+        /**
+         * Determine if currently in view.
+         *
+         * @since       1.0.0
+         * @access      public
+         * @return      boolean
+         */
+        public function in_view() {
+
+            global $pagenow;
+            
+            if ( $pagenow === 'admin.php' && isset($_GET['page']) && $_GET['page'] === $this->config['id'] ){
+                return true;
+            }
+
+            return false;
+
         }
 
         /**
@@ -221,7 +240,7 @@ if ( ! class_exists('CoraFramework') ) {
             wp_enqueue_script(
                 'cora-framework',
                 $this->url."/assets/js/app.min.js",
-                array('vue'),
+                ['vue'],
                 $this->version,
                 true
             );
@@ -236,7 +255,7 @@ if ( ! class_exists('CoraFramework') ) {
          */
         public function app_data() {
         
-            wp_localize_script( 'cora-framework', 'CoraFrameworkData', array(
+            wp_localize_script( 'cora-framework', 'CoraFrameworkData', [
                 'nonce' => wp_create_nonce('cora-framework-nonce'),
                 'config' => $this->config,
                 'sections' => $this->sections,
@@ -244,7 +263,7 @@ if ( ! class_exists('CoraFramework') ) {
                 'values' => $this->get_values(),
                 'translation' => $this->translation,
                 'url' => $this->url
-            ));
+            ]);
         
         }
 
@@ -260,8 +279,11 @@ if ( ! class_exists('CoraFramework') ) {
             $this->sections[] = $section;
             
             if ( !isset($this->values[ $section['id'] ]) ) {
+
                 $this->values[$section['id']] = ['_empty' => null];
+
             }
+
         }
 
         /**
@@ -306,31 +328,34 @@ if ( ! class_exists('CoraFramework') ) {
             update_option( $this->config['id'], $_POST['data'] );
 
             wp_die();
+            
         }
 
         /**
-         * API: Get settings values.
+         * API: Get all values.
          *
          * @since       1.0.0
          * @access      public
          * @return      array
          */
         public function get_values() {
-            $values = get_option($this->config['id']);
-            $sections = array();
-        
-            if($values) {
 
-                foreach ($this->sections as $section) {
+            $values = get_option($this->config['id']);
+        
+            if( $values ) {
+                $sections = [];
+
+                foreach ( $this->sections as $section ) {
                     $sections[ $section['id']] = ['_empty' => null];
                 }
                         
                 $values = wp_parse_args($values , $sections);
+
                 return wp_unslash( json_decode( json_encode($values), true) );
             }
 
-            # Option is not in the database, get default values.
             return $this->values;
+
         }
         
         /**
@@ -344,11 +369,14 @@ if ( ! class_exists('CoraFramework') ) {
 
             $section = $this->get_values()[$sectionID];
 
-            if( isset($section[$fieldID]) ){
+            if( isset($section[$fieldID]) ) {
+            
                 return $section[$fieldID];
-            }else{
-                return $default;
+            
             }
+
+            return $default;
+
         }
 
         /**
@@ -362,11 +390,12 @@ if ( ! class_exists('CoraFramework') ) {
 
             $values = $this->get_values();
             
-            $values[$sectionID][$fieldID] =$value;
+            $values[$sectionID][$fieldID] = $value;
             
             update_option( $this->config['id'], $values );
+
         }
 
-    } # Class end
+    }
 
 }
