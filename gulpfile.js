@@ -1,4 +1,4 @@
-const { src, dest, watch, series, parallel } = require('gulp');
+const gulp = require('gulp');
 
 const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
@@ -19,50 +19,50 @@ const files = {
         dist:   'assets/css'
     },
     js: {
-        src:    'assets/js/**/*.js',
+        src:    ['assets/js/**/*.js', '!assets/js/app.min.js'],
         dist:   'assets/js'
     }
 }
 
 /**
- * Compile SASS
+ * Styles
  */
-const compileSASS = () => {    
-    return src(files.sass.src)
+function styles () {    
+    return gulp.src(files.sass.src)
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(postcss([ autoprefixer(), cssnano() ]))
         .pipe(sourcemaps.write('.'))
-        .pipe(dest(files.sass.dist)
+        .pipe(gulp.dest(files.sass.dist)
     );
 }
 
+
 /**
- * Compile javascript
+ * Scripts
  */
-const compileJS = () => {
-    return src([files.js.src])
+function scripts () {
+    return gulp.src(files.js.src)
         .pipe(concat('app.min.js'))
         .pipe(babel({
             presets: ['@babel/env']
         }))      
         .pipe(uglify())
-        .pipe(dest(files.js.dist)
+        .pipe(gulp.dest(files.js.dist)
     );
 }
+
 
 /**
  * Watch for changes
  */
-const change = () => {
-    watch([files.sass.src, files.js.src], 
-        parallel(compileSASS, compileJS));    
+function watch () {
+    gulp.watch(files.sass.src, styles);
+    gulp.watch(files.js.src, scripts);
 }
 
-/**
- * Default Task
- */
-exports.default = series(
-    parallel(compileSASS, compileJS), 
-    change
-);
+
+
+exports.styles = styles;
+exports.scripts = scripts;
+exports.watch = watch;
