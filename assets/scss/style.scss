@@ -103,14 +103,21 @@
             padding: 26px 0px;   
             .cf-field-title{
                 float: left;
-                width: 28%;
+                width: 35%;
                 font-weight: 700;
                 font-size: 14px;
                 color: #75767d;
+                margin-right: 5%;
+                p{
+                    font-size: 12px;
+                    line-height: 16px;
+                    font-weight: 400;
+                    color: #8c96a7;                
+                }
             }
             .cf-item-field-controls{
                 float: right;
-                width: 72%;
+                width: 60%;
             }
         }
     }

@@ -4,10 +4,10 @@
   "description": "Simple & Flexible WordPress options framework.",
   "main": "index.js",
   "scripts": {
-    "start": "gulp"
+    "start": "gulp scripts & gulp styles & gulp watch"
   },
   "repository": {
-    "type": "gulp scripts & gulp styles & gulp watch",
+    "type": "git",
     "url": "git+https://github.com/omarbadran/cora-framework.git"
   },
   "author": "Omar Badran",

@@ -191,12 +191,8 @@ if ( ! class_exists('CoraFramework') ) {
 
             global $pagenow;
             
-            if ( $pagenow === 'admin.php' && isset($_GET['page']) && $_GET['page'] === $this->config['id'] ){
-                return true;
-            }
-
-            return false;
-
+            return $pagenow === 'admin.php' && isset($_GET['page']) && $_GET['page'] === $this->config['id'];
+        
         }
 
         /**
@@ -268,8 +264,9 @@ if ( ! class_exists('CoraFramework') ) {
         }
 
         /**
-         * API: Add section
-         *
+         * Add section
+         * 
+         * @api
          * @since       1.0.0
          * @access      public
          * @return      void
@@ -287,8 +284,9 @@ if ( ! class_exists('CoraFramework') ) {
         }
 
         /**
-         * API: Add field
-         *
+         * Add field
+         * 
+         * @api
          * @since       1.0.0
          * @access      public
          * @return      void
@@ -332,8 +330,9 @@ if ( ! class_exists('CoraFramework') ) {
         }
 
         /**
-         * API: Get all values.
-         *
+         * Get all values.
+         * 
+         * @api
          * @since       1.0.0
          * @access      public
          * @return      array
@@ -359,8 +358,9 @@ if ( ! class_exists('CoraFramework') ) {
         }
         
         /**
-         * API: Get field value.
-         *
+         * Get field value.
+         * 
+         * @api
          * @since       1.0.0
          * @access      public
          * @return      array
@@ -380,8 +380,9 @@ if ( ! class_exists('CoraFramework') ) {
         }
 
         /**
-         * API: Update field value.
-         *
+         * Update field value.
+         * 
+         * @api
          * @since       1.0.0
          * @access      public
          * @return      void

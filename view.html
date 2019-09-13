@@ -24,7 +24,10 @@
 			<h2> {{ activeSectionTitle }} </h2>
 
 			<div v-for="field in fields" v-show="showField(field)" class="cf-field">
-				<span class="cf-field-title" v-if="field.title"> {{ field.title }} </span>
+				<span class="cf-field-title" v-if="field.title">
+                    {{field.title}}
+                    <p v-if="field.description" v-html="field.description"></p>
+                </span>
 				<div :class="'cf-' + field.type + '-field'" class="cf-item-field-controls">
 					<component
                         :is="field.type + '-field'"
