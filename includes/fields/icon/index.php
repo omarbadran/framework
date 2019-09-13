@@ -38,6 +38,8 @@ class cora_icon_field {
 		wp_enqueue_style( 'cora-icon-field', $this->url."/index.css" );
 		wp_enqueue_script( 'cora-icon-field', $this->url."/index.js" );
 
+        wp_enqueue_style( 'cora-icon-field-icons', $this->url."/icons.css" );
+
     }
 }
 
