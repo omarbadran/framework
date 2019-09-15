@@ -4,16 +4,12 @@
  *
  * Simple & Flexible WordPress options framework.
  *
- * @package      CoraDashboard
- * @subpackage   CoraFramework
- * @author       Omar Badran
+ * @package     CoraFramework
+ * @author      Omar Badran <engineer.o.badran@gmail.com>
+ * @access      public
  */
 
-# Exit if accessed directly.
-defined( 'ABSPATH' ) || exit;
-
-
-
+ 
 if ( ! class_exists('CoraFramework') ) {
 
     /**

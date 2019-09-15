@@ -1,0 +1,8 @@
+{
+    "name": "cora-dashboard/cora-framework",
+    "description": "Simple & Flexible WordPress options framework.",
+    "license": "GPL-3.0+",
+    "require": {
+        "php": "^5.6"
+    },
+}
