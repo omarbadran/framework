@@ -4,7 +4,7 @@
   "description": "Simple & Flexible WordPress options framework.",
   "main": "index.js",
   "scripts": {
-    "start": "gulp scripts & gulp styles & gulp watch"
+    "start": "gulp"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2",
+    "gulp-sass-glob": "^1.1.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
     "node-sass": "^4.12.0"
