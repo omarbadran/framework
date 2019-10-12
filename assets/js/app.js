@@ -45,8 +45,8 @@ var CoraFramework = {
 
             // Check conditions
             if (field.condition) {
-                compareValue = field.condition[2];
-                target = vm.values[field.section][field.condition[0]];
+                let compareValue = field.condition[2];
+                let target = vm.values[field.section][field.condition[0]];
                 
                 res = eval(`compareValue ${field.condition[1]} target`);
             }

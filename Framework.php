@@ -57,7 +57,7 @@ if ( ! class_exists('CoraFramework') ) {
          *
          * @var array
          */
-        private $config;
+        public $config;
         
         /**
          * Registered Sections.
@@ -66,7 +66,7 @@ if ( ! class_exists('CoraFramework') ) {
          *
          * @var array
          */
-        private $sections = [];
+        public $sections = [];
 
         /**
          * Registered fields.
@@ -75,7 +75,7 @@ if ( ! class_exists('CoraFramework') ) {
          *
          * @var array
          */
-        private $fields = [];
+        public $fields = [];
         
         /**
          * Fields values.
@@ -117,7 +117,6 @@ if ( ! class_exists('CoraFramework') ) {
                 'capability' => 'manage_options',
                 'menu_icon' => '',
                 'menu_position' => 99,
-                'render_page' => [ $this, 'render_page' ]
             ]);
             
             # Translation
@@ -159,7 +158,7 @@ if ( ! class_exists('CoraFramework') ) {
             extract($this->config);
 
             # Add Menu page
-            add_menu_page( $page_title, $menu_title, $capability, $id, $render_page, $menu_icon, $menu_position );
+            add_menu_page( $page_title, $menu_title, $capability, $id, [ $this, 'render_page' ], $menu_icon, $menu_position );
             
         }
 
@@ -246,7 +245,8 @@ if ( ! class_exists('CoraFramework') ) {
          * @return      void
          */
         public function app_data() {
-        
+
+
             wp_localize_script( 'cora-framework', 'CoraFrameworkData', [
                 'nonce' => wp_create_nonce('cora-framework-nonce'),
                 'config' => $this->config,
@@ -361,7 +361,7 @@ if ( ! class_exists('CoraFramework') ) {
          * @access      public
          * @return      array
          */
-        public function get_value($sectionID, $fieldID, $default) {
+        public function get_value($sectionID, $fieldID, $default = NULL) {
 
             $section = $this->get_values()[$sectionID];
 
