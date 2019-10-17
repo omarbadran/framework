@@ -6,12 +6,13 @@ Vue.component('image-field', {
 
     props: {
         value: String,
+        translation: Object
     },
     
     template: `
         <div>
             <input type="text" @input="$emit('input', $event.target.value)" :value="value" placeholder="URL"/>
-            <div class="button" @click="select">Select</div>
+            <div class="button" @click="select">{{translation.from_library}}</div>
         </div>
     `,
 

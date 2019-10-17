@@ -14,6 +14,6 @@
     float: left;
 }
 
-.cf-image-select-item .cf_selected img{
+.cf-image-select-item.cf_selected img{
     border-color: #0073aa;
 }

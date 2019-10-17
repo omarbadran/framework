@@ -8,5 +8,6 @@ return [
     'remove'                =>      esc_html__('Remove' , 'text_domain'),
     'import'                =>      esc_html__('Import' , 'text_domain'),
     'download_data'         =>      esc_html__('Download Data' , 'text_domain'),
-    'no_file_selected'      =>      esc_html__('No file selected!' , 'text_domain')
+    'no_file_selected'      =>      esc_html__('No file selected!' , 'text_domain'),
+    'from_library'          =>      esc_html__('From Library' , 'text_domain')
 ];
