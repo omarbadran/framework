@@ -45,12 +45,37 @@ var CoraFramework = {
 
             // Check conditions
             if (field.condition) {
-                let compareValue = field.condition[2];
-                let target = vm.values[field.section][field.condition[0]];
-                
-                res = eval(`compareValue ${field.condition[1]} target`);
-            }
 
+                // Multiple conditions
+                if ( Array.isArray(field.condition[0]) ) {
+                    
+                    for (let index = 0; index < field.condition.length; index++) {
+                        let compareValues = field.condition[index][2];
+                        let targets = vm.values[field.section][field.condition[index][0]];
+                        
+                        let subres = eval(`compareValues ${field.condition[index][1]} targets`);
+                        res = subres;
+                        
+                        if (subres == false) {
+                            break;
+                        }
+                        
+                    }
+
+                }
+
+                // Single conditions
+                else {
+                    
+                    let compareValue = field.condition[2];
+                    let target = vm.values[field.section][field.condition[0]];
+                    
+                    res = eval(`compareValue ${field.condition[1]} target`);
+                        
+                }
+
+            }
+            
             return res;
         },
 
