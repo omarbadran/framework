@@ -101,7 +101,7 @@ var CoraFramework = {
          * 
          * @since 1.0.0
          */
-        save: function (data) {
+        save: function (done) {
             const vm = this;
             
             this.loading = true;
@@ -120,12 +120,15 @@ var CoraFramework = {
                 url: ajaxurl,
                 success: function () {
                     vm.loading = false;
-                    vm.showAlert('success', vm.translation.data_saved)
+                    vm.showAlert('success', vm.translation.data_saved);
+                    if (done) {
+                        done();
+                    }
                 }
             }).fail(function (data) {
                 vm.loading = false;
-                vm.showAlert('warning', vm.translation.error)
-        }); 
+                vm.showAlert('warning', vm.translation.error);
+            }); 
 
         }
 

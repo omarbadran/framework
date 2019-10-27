@@ -24,10 +24,16 @@ Vue.component('demo-field', {
     methods: {
         importDemo: function (data){            
             if (confirm(this.translation.confirm)) {
-                let newData = jQuery.extend(true, CoraFramework.values, data);
-                console.log(newData);
+                let original = JSON.parse(JSON.stringify(CoraFramework.values));
+                let coming = JSON.parse(JSON.stringify(data));
+
+                let newData = deepmerge(original, coming);
+
                 CoraFramework.values = newData;
-                CoraFramework.save();
+                
+                CoraFramework.save(() => {
+                    location.reload()
+                });
             }
         }
     }
