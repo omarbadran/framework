@@ -92,7 +92,7 @@ var CoraFramework = {
             vm.alert.message = message;
             
             setTimeout(() => {
-                //vm.alert = false;
+                vm.alert = false;
             }, 3000);
         },
 
@@ -101,15 +101,23 @@ var CoraFramework = {
          * 
          * @since 1.0.0
          */
-        save: function (done) {
+        save: function (args) {
             const vm = this;
             
-            this.loading = true;
+            let data;
+
+            vm.loading = true;
+
+            if ( args.data ) {
+                data = args.data;
+            } else {
+                data = vm.values;
+            }
 
             var postData = {
                 action: 'cora_save',
-                security: this.nonce,
-                data: this.values
+                security: vm.nonce,
+                data: data
             }
 
             // Ajax save
@@ -118,16 +126,24 @@ var CoraFramework = {
                 data: postData,
                 dataType:"json",
                 url: ajaxurl,
+                // Success
                 success: function () {
                     vm.loading = false;
                     vm.showAlert('success', vm.translation.data_saved);
-                    if (done) {
-                        done();
+
+                    if (typeof args.success === 'function') {
+                        args.success();
                     }
-                }
-            }).fail(function (data) {
-                vm.loading = false;
-                vm.showAlert('warning', vm.translation.error);
+                },
+                // Error
+                error: function () {
+                    vm.loading = false;
+                    vm.showAlert('warning', vm.translation.error);
+                    
+                    if (typeof args.error === 'function') {
+                        args.error();
+                    }    
+                },
             }); 
 
         }

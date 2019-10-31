@@ -14,7 +14,7 @@ Vue.component('demo-field', {
             <div v-for="option in options" class="cf-demo">
                 <img :src="option.img" :title="option.title"/>
                 <div class="cf-demo-bottom">
-                    <span>{{option.title}}</span>
+                    <span v-html="option.title"></span>
                     <div class="button button-primary" @click="importDemo(option.data)">{{translation.import}}</div>
                 </div>
             </div>
@@ -28,11 +28,12 @@ Vue.component('demo-field', {
                 let coming = JSON.parse(JSON.stringify(data));
 
                 let newData = deepmerge(original, coming);
-
-                CoraFramework.values = newData;
-                
-                CoraFramework.save(() => {
-                    location.reload()
+                                
+                CoraFramework.save({
+                    data: newData,
+                    success: function () {
+                        location.reload()
+                    }
                 });
             }
         }
