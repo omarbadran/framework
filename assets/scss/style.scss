@@ -13,7 +13,7 @@
 
     .cf-nav{
         float: left;
-        width: 200px;
+        width: 190px;
         margin: 0;
         height: 100%;
         padding: 20px 0;
@@ -26,7 +26,7 @@
             float: left;
             width: calc(100% - 40px);
             margin: 2px 20px;
-            padding: 9px 10px;
+            padding: 8px 10px;
             box-sizing: border-box;
             text-transform: capitalize;
             font-weight: 700;
@@ -85,10 +85,10 @@
     .cf-content{
         display: block;
         float: left;
-        width: calc(100% - 200px);
+        width: calc(100% - 190px);
         box-sizing: border-box;
-        padding: 25px 40px;
-        margin-left: 200px;
+        padding: 25px 50px;
+        margin-left: 190px;
 
         h2{
             text-transform: capitalize;
@@ -133,7 +133,7 @@
         position: absolute;
         bottom: 20px;
         left: 20px;
-        width: 160px;
+        width: 150px;
         height: 36px;
         line-height: 36px;
         text-align: center;

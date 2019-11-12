@@ -20,9 +20,9 @@
         </ul>
 	
 		<div class="cf-content">
-			<h2> {{ activeSectionTitle }} </h2>
+			<h2 :section="activeSection"> {{ activeSectionTitle }} </h2>
 
-			<div v-for="field in fields" v-show="showField(field)" class="cf-field" :class="{'cf-no-title': !field.title}">
+			<div v-for="field in fields" v-show="showField(field)" class="cf-field" :class="{'cf-no-title': !field.title}" :section="field.section">
 
                 <span class="cf-field-title" v-if="field.title">
                     {{field.title}} <p v-if="field.description" v-html="field.description"></p>

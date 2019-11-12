@@ -339,12 +339,12 @@ if ( ! class_exists('CoraFramework') ) {
         
             if( $values ) {
                 $sections = [];
+                        
+                $values = wp_parse_args($values , $this->values);
 
                 foreach ( $this->sections as $section ) {
-                    $sections[ $section['id']] = ['_empty' => null];
+                    $values[ $section['id'] ]['_empty'] = null;
                 }
-                        
-                $values = wp_parse_args($values , $sections);
 
                 return wp_unslash( json_decode( json_encode($values), true) );
             }

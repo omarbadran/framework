@@ -8,7 +8,6 @@
     transition: background 0.3s;
     width: 180px;
     max-width: 100%;
-    margin-left: 10px;
     margin-right: 10px;
 }
 .cf-image-field input:hover, .cf-image-field input:active, .cf-image-field input:focus {
