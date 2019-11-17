@@ -121,7 +121,7 @@ var CoraFramework = {
             }
 
             // Ajax save
-            $.ajax({
+            jQuery.ajax({
                 type: "POST",
                 data: postData,
                 dataType:"json",
