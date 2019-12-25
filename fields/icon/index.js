@@ -20,7 +20,7 @@ Vue.component('icon-field', {
 
     created: function () {
         var vm = this;
-        const JSONFile = CoraFrameworkData.url + 'includes/fields/icon/icons.json';
+        const JSONFile = CoraFrameworkData.url + 'fields/icon/icons.json';
 
         if( window.materialIconsList ){
 
