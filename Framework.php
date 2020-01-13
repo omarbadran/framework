@@ -88,24 +88,6 @@ if ( ! class_exists('CF') ) {
          * @return void
          */
         public function __construct( $args ) {
-            $class = $this;
-
-            add_action( 'plugins_loaded', function() use($args, $class) {
-                $class->init($args);
-            });
-        }
-
-        /**
-         * Initialize.
-         *
-         * @since 1.0.0
-         * @access public
-         *  
-    	 * @param array $args An array of information representing the instance.
-         * 
-         * @return void
-         */ 
-        public function init( $args ) {
             $defaults = [
                 'page_title' => 'example',
                 'menu_title' => 'example',
@@ -114,7 +96,7 @@ if ( ! class_exists('CF') ) {
                 'menu_position' => 99,
             ];
 
-            $this->config = array_merge( $args, $defaults );
+            $this->config = wp_parse_args( $args, $defaults );
             
             $this->translation = include $this->dir("translation.php");
 
@@ -419,6 +401,3 @@ if ( ! class_exists('CF') ) {
     }
 
 }
-
-//DEV ONLY
-require "sample.php";
