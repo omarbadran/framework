@@ -35,8 +35,8 @@ class cora_switch_field {
      */
     public function assets() {
 
-		wp_enqueue_style( 'cora-switch-field', $this->url."/index.css" );
-		wp_enqueue_script( 'cora-switch-field', $this->url."/index.js" );
+		wp_enqueue_style( 'cora-switch-field', $this->url."index.css" );
+		wp_enqueue_script( 'cora-switch-field', $this->url."index.js" );
 
     }
 }

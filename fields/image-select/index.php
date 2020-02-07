@@ -35,8 +35,8 @@ class cora_image_select_field {
      */
     public function assets() {
 
-		wp_enqueue_style( 'cora-image-select-field', $this->url."/index.css" );
-		wp_enqueue_script( 'cora-image-select-field', $this->url."/index.js" );
+		wp_enqueue_style( 'cora-image-select-field', $this->url."index.css" );
+		wp_enqueue_script( 'cora-image-select-field', $this->url."index.js" );
 
     }
 }

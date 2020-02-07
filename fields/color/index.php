@@ -35,12 +35,12 @@ class cora_color_field {
      */
     public function assets() {
 
-		wp_enqueue_style( 'cora-color-field', $this->url."/index.css" );
-		wp_enqueue_script( 'cora-color-field', $this->url."/index.js" );
+		wp_enqueue_style( 'cora-color-field', $this->url."index.css" );
+		wp_enqueue_script( 'cora-color-field', $this->url."index.js" );
 
 		# pickr
-		wp_enqueue_script( 'pickr', $this->url."/assets/pickr/pickr.min.js" , ['vue'] );
-		wp_enqueue_style( 'pickr', $this->url."/assets/pickr/nano.min.css" );
+		wp_enqueue_script( 'pickr', $this->url."assets/pickr/pickr.min.js" , ['vue'] );
+		wp_enqueue_style( 'pickr', $this->url."assets/pickr/nano.min.css" );
 		
     }
 }

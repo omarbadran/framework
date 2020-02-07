@@ -35,12 +35,12 @@ class cora_select_field {
      */
     public function assets() {
 
-		wp_enqueue_style( 'cora-select-field', $this->url."/index.css" );
-		wp_enqueue_script( 'cora-select-field', $this->url."/index.js" );
+		wp_enqueue_style( 'cora-select-field', $this->url."index.css" );
+		wp_enqueue_script( 'cora-select-field', $this->url."index.js" );
 
         # select2
-		wp_enqueue_script( 'select2', $this->url."/assets/select2/select2.min.js" , ['jquery'] );
-		wp_enqueue_style( 'select2', $this->url."/assets/select2/select2.min.css" );
+		wp_enqueue_script( 'select2', $this->url."assets/select2/select2.min.js" , ['jquery'] );
+		wp_enqueue_style( 'select2', $this->url."assets/select2/select2.min.css" );
 
     }
 }

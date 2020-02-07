@@ -35,10 +35,10 @@ class cora_export_field {
      */
     public function assets() {
 
-		wp_enqueue_style( 'cora-export-field', $this->url."/index.css" );
-		wp_enqueue_script( 'cora-export-field', $this->url."/index.js" );
+		wp_enqueue_style( 'cora-export-field', $this->url."index.css" );
+		wp_enqueue_script( 'cora-export-field', $this->url."index.js" );
 
-		wp_enqueue_script( 'FileSaver', $this->url."/assets/FileSaver/FileSaver.min.js" );
+		wp_enqueue_script( 'FileSaver', $this->url."assets/FileSaver/FileSaver.min.js" );
 
     }
 }

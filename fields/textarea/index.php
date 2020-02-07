@@ -35,8 +35,8 @@ class cora_textarea_field {
      */
     public function assets() {
 
-		wp_enqueue_style( 'cora-textarea-field', $this->url."/index.css" );
-		wp_enqueue_script( 'cora-textarea-field', $this->url."/index.js" );
+		wp_enqueue_style( 'cora-textarea-field', $this->url."index.css" );
+		wp_enqueue_script( 'cora-textarea-field', $this->url."index.js" );
 
     }
 }

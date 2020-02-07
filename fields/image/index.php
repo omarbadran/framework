@@ -35,8 +35,8 @@ class cora_image_field {
 	 */
 	public function assets() {
 
-		wp_enqueue_style( 'cora-image-field', $this->url."/index.css" );
-        wp_enqueue_script( 'cora-image-field', $this->url."/index.js" );
+		wp_enqueue_style( 'cora-image-field', $this->url."index.css" );
+        wp_enqueue_script( 'cora-image-field', $this->url."index.js" );
         
 		# Media
 		wp_enqueue_media();

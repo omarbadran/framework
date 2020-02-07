@@ -35,11 +35,24 @@ class cora_icon_field {
      */
     public function assets() {
 
-		wp_enqueue_style( 'cora-icon-field', $this->url."/index.css" );
-		wp_enqueue_script( 'cora-icon-field', $this->url."/index.js" );
+		wp_enqueue_style( 'cora-icon-field', $this->url."index.css" );
+		wp_register_script( 'cora-icon-field', $this->url."index.js", ['vue', 'jquery'], $this->version, true );
 
-        wp_enqueue_style( 'cora-icon-field-icons', $this->url."/icons.css" );
+        wp_enqueue_style( 'cora-icon-field-icons', $this->url."icons.css" );
 
+        // Load the icons JSON file.
+
+        $request = wp_remote_get( $this->url."icons.json" );
+
+        if( is_wp_error( $request ) ) {
+            return false;
+        }
+    
+        $icons_file = wp_remote_retrieve_body( $request );
+        $icons = json_decode( $icons_file );
+
+        wp_localize_script( 'cora-icon-field', 'materialIconsList', $icons);
+        wp_enqueue_script( 'cora-icon-field' );
     }
 }
 

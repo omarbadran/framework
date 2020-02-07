@@ -251,7 +251,7 @@ if ( ! class_exists('CF') ) {
             wp_enqueue_script(
                 'cf',
                 $this->url("/assets/js/app.min.js"),
-                ['vue'],
+                ['vue', 'jquery'],
                 $this->version,
                 true
             );

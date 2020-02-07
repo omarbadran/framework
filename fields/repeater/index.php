@@ -35,10 +35,10 @@ class cora_repeater_field {
      */
     public function assets() {
 
-		wp_enqueue_style( 'cora-repeater-field', $this->url."/index.css" );
-        wp_enqueue_script( 'cora-repeater-field', $this->url."/index.js" , ['slicksort'] );
+		wp_enqueue_style( 'cora-repeater-field', $this->url."index.css" );
+        wp_enqueue_script( 'cora-repeater-field', $this->url."index.js" , ['slicksort'] );
         
-		wp_enqueue_script( 'slicksort', $this->url."/assets/slicksort/vue-slicksort.min.js" , ['vue'] );
+		wp_enqueue_script( 'slicksort', $this->url."assets/slicksort/vue-slicksort.min.js" , ['vue'] );
 
     }
 }

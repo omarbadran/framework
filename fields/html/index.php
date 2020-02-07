@@ -35,7 +35,7 @@ class cora_HTML_field {
      */
     public function assets() {
 
-		wp_enqueue_script( 'cora-HTML-field', $this->url."/index.js" );
+		wp_enqueue_script( 'cora-HTML-field', $this->url."index.js" );
 
     }
 }

@@ -35,8 +35,8 @@ class cora_import_field {
      */
     public function assets() {
 
-		wp_enqueue_style( 'cora-import-field', $this->url."/index.css" );
-		wp_enqueue_script( 'cora-import-field', $this->url."/index.js" );
+		wp_enqueue_style( 'cora-import-field', $this->url."index.css" );
+		wp_enqueue_script( 'cora-import-field', $this->url."index.js" );
 
     }
 }

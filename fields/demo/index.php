@@ -35,9 +35,9 @@ class cora_demo_field {
      */
     public function assets() {
 
-		wp_enqueue_style( 'cora-demo-field', $this->url."/index.css" );
-		wp_enqueue_script( 'cora-demo-field', $this->url."/index.js" );
-		wp_enqueue_script( 'deepmerge', $this->url."/assets/vendor/deepmerge/deepmerge.js" );
+		wp_enqueue_style( 'cora-demo-field', $this->url."index.css" );
+		wp_enqueue_script( 'cora-demo-field', $this->url."index.js" );
+		wp_enqueue_script( 'deepmerge', $this->url."assets/vendor/deepmerge/deepmerge.js" );
 
     }
 }

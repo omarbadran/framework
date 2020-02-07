@@ -35,8 +35,8 @@ class cora_editor_field {
      */
     public function assets() {
 
-		wp_enqueue_style( 'cora-editor-field', $this->url."/index.css" );
-        wp_enqueue_script( 'cora-editor-field', $this->url."/index.js" );
+		wp_enqueue_style( 'cora-editor-field', $this->url."index.css" );
+        wp_enqueue_script( 'cora-editor-field', $this->url."index.js" );
         
         wp_enqueue_editor();
     }
