@@ -36,7 +36,7 @@ class cora_icon_field {
     public function assets() {
 
 		wp_enqueue_style( 'cora-icon-field', $this->url."index.css" );
-		wp_register_script( 'cora-icon-field', $this->url."index.js", ['vue', 'jquery'], $this->version, true );
+		wp_register_script( 'cora-icon-field', $this->url."index.js", ['vue', 'jquery'], false, true );
 
         wp_enqueue_style( 'cora-icon-field-icons', $this->url."icons.css" );
 
