@@ -1,5 +1,4 @@
 <div id="cf" :class="{initialized: initialized}">
-
 	<div class="cf-header">
         <h1>{{ config.page_title }}</h1>
         
@@ -50,5 +49,7 @@
         </transition>
 
         <div class="cf-save button button-primary" @click="save">{{ translation.save_changes }}</div>
-	</div>
+    </div>
+    
+    <div class="clear"></div>
 </div>

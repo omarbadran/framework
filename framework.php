@@ -245,7 +245,7 @@ if ( ! class_exists('CF') ) {
         public function scripts() {
             wp_enqueue_script( 
                 'vue',
-                $this->url("/assets/vendor/vue/vue.js")
+                $this->url("/assets/vendor/vue/vue.min.js")
             );
             
             wp_enqueue_script(
