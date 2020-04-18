@@ -312,6 +312,31 @@ if ( ! class_exists('CF') ) {
         }
 
         /**
+         * Sanitize.
+         *
+         * @since 1.0.0
+         * @access public 
+         * 
+         * @return void
+         */
+        public function sanitize($data) {
+            if( is_string($data) ){
+                $data = sanitize_text_field($data);
+            }elseif( is_array($data) ){
+                foreach ( $data as $key => &$value ) {
+                    if ( is_array( $value ) ) {
+                        $value = $this->sanitize($value);
+                    }
+                    else {
+                        $value = sanitize_text_field( $value );
+                    }
+                }
+            }
+        
+            return $data;
+        }
+
+        /**
          * Ajax Save.
          *
          * @since 1.0.0
@@ -329,9 +354,12 @@ if ( ! class_exists('CF') ) {
             if ( ! current_user_can( $this->config['capability'] ) ){
                 wp_die();
             }
+            
+            # Sanitize
+            $data = $this->sanitize($_POST['data']);
 
             # Save the data
-            update_option( $this->config['id'], $_POST['data'] );
+            update_option( $this->config['id'], $data );
 
             wp_die();
         }
