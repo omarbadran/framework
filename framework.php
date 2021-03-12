@@ -361,6 +361,8 @@ if ( ! class_exists('CF') ) {
             # Save the data
             update_option( $this->config['id'], $data );
 
+            wp_send_json_success();
+
             wp_die();
         }
 
